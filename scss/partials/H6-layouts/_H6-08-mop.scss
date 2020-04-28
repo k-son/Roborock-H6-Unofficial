@@ -1,0 +1,398 @@
+.h6__08-mop {
+  position: relative;
+  height: 75rem;
+  overflow: hidden;
+
+  @media only screen and (max-width: $bp-large) {
+    height: 50rem;
+  }
+
+  @media only screen and (max-width: 800px) {
+    height: auto;
+  }
+
+  &__item {
+    position: absolute;
+    top: 0;
+    display: inline-block;
+    height: inherit;
+    transition: all .5s;
+
+    @media only screen and (max-width: 800px) {
+      position: relative;
+      display: block;
+      width: 100%;
+    }
+
+    &__text {
+      position: absolute;
+      top: 5rem;
+      width: 55%;
+      z-index: 5;
+
+      @media only screen and (max-width: 1200px) {
+        top: 3.2rem;
+        width: 75%;
+      }
+
+      @media only screen and (max-width: 800px) {
+        top: 4rem;
+      }
+
+      @media only screen and (max-width: 650px) {
+        width: 70%;
+      }
+
+      @media only screen and (max-width: $bp-small) {
+        position: relative;
+        width: 90%;
+        margin: 0 auto;
+        padding: 2.4rem;
+        text-align: center;
+      }
+
+      @media only screen and (max-width: 500px) {
+        width: 90%;
+      }
+
+      &--carpet {
+        left: 17%;
+        transform: skew(10deg, 0);
+
+        @media only screen and (max-width: 800px) {
+          left: 5%;
+          transform: skew(0, 0);
+        }
+
+        @media only screen and (max-width: $bp-small) {
+          top: 0;
+          left: 0;
+        }
+      }
+
+      &--floor {
+        left: 20%;
+
+        @media only screen and (max-width: 800px) {
+          left: 5%;
+        }
+
+        @media only screen and (max-width: $bp-small) {
+          top: 0;
+          left: 0;
+        }
+      }
+
+      & h3 {
+        @include H6-h3;
+        font-size: 2.8rem;
+      }
+
+      & p {
+        @include H6-paragraph;
+
+        @media only screen and (max-width: $bp-large) {
+          background-color: rgba(255,255,255,.7);
+          padding: .4rem;
+        }
+
+        @media only screen and (max-width: 800px) {
+          background-color: transparent;
+          padding: 0;
+        }
+      }
+    }
+
+    &__video {
+      position: absolute;
+      display: block;
+      height: 12rem;
+      width: auto;
+      opacity: 1;
+      z-index: 5;
+
+      &--carpet {
+        top: 40%;
+        left: 32%;
+        transform: skew(10deg, 0);
+
+        @media only screen and (max-width: 1200px) {
+          left: 35%;
+        }
+        
+        @media only screen and (max-width: $bp-large) {
+          height: 8rem;
+          top: 43%;
+          left: 22rem;
+        }
+
+        @media only screen and (max-width: $bp-medium) {
+          height: 8rem;
+          top: 45%;
+          left: 14rem;
+        }
+
+        @media only screen and (max-width: 800px) {
+          transform: skew(0, 0);
+        }
+
+        @media only screen and (max-width: $bp-small) {
+          height: 15vw;
+          top: 58%;
+          left: 20%;
+        }
+
+        @media only screen and (max-width: 400px) {
+          top: 65%;
+          left: 15%;
+        }
+      }
+
+      &--floor {
+        top: 45%;
+        left: 18%;
+                
+        @media only screen and (max-width: $bp-large) {
+          height: 7rem;
+          top: 48%;
+          left: 15rem;
+        }
+
+        @media only screen and (max-width: $bp-small) {
+          height: 15vw;
+          top: 60%;
+          left: 20%;
+        }
+
+        @media only screen and (max-width: 400px) {
+          top: 63%;
+          left: 14%;
+        }
+      }
+    }
+
+    & img {
+      position: absolute;
+      height: inherit;
+      width: auto;
+      transition: left .5s;
+
+      @media only screen and (max-width: $bp-large) {
+        height: 50rem;
+      }
+
+      @media only screen and (max-width: 800px) {
+        position: relative;
+        width: 100%;
+        height: auto;
+      }
+    }
+
+    &--carpet {
+      left: -10%;
+      width: 70%;
+      transform: skew(-10deg, 0);
+      overflow: hidden;
+      z-index: 2;
+
+      @media only screen and (max-width: 800px) {
+        left: 0;
+        width: 100%;
+        height: auto;
+        transform: skew(0, 0);
+        z-index: 1;
+      }
+
+      & img {
+        position: relative;
+        left: -8rem;
+        transform: skew(10deg, 0);
+
+        @media only screen and (max-width: $bp-large) {
+          left: 0rem;
+        }
+
+        @media only screen and (max-width: $bp-medium) {
+          left: -10rem;
+        }
+
+        @media only screen and (max-width: 800px) {
+          left: 0;
+          transform: skew(0, 0);
+        }
+      }
+    }
+
+    &--floor {
+      right: 0;
+      width: 60%;
+      z-index: 1;
+
+      @media only screen and (max-width: 800px) {
+        width: 100%;
+        height: auto;
+      }
+
+      & img {
+        left: -15rem;
+
+        @media only screen and (max-width: $bp-large) {
+          left: -5rem;
+        }
+
+        @media only screen and (max-width: $bp-medium) {
+          left: -10rem;
+        }
+
+        @media only screen and (max-width: 800px) {
+          left: 0;
+        }
+      }
+    }
+  }
+}
+
+.engine-indicator {
+  position: absolute;
+  width: 8rem;
+  height: 1px;
+  transform: rotate(30deg);
+  z-index: 9;
+  background-color: #000;
+
+  &::after {
+    display: block;
+    content: "";
+    position: absolute;
+    top: -1px;
+    right: -7px;
+    width: 1px;
+    height: 2.5rem;
+    transform: rotate(-30deg);
+    background-color: #000;
+  }
+
+  &--carpet {
+    top: 55%;
+    left: 48rem;
+
+    &::after {
+      top: -3px;
+      right: -9px;
+      transform: rotate(-40deg);
+
+      @media only screen and (max-width: 800px) {
+        top: -1px;
+        right: -7px;
+        transform: rotate(-30deg);
+      }
+    }
+
+    @media only screen and (max-width: $bp-large) {
+      top: 53%;
+      left: 35rem;
+    }
+
+    @media only screen and (max-width: $bp-medium) {
+      top: 55%;
+      left: 26.5rem;
+    }
+
+    @media only screen and (max-width: 600px) {
+      top: 68%;
+      left: 42%;
+    }
+
+    @media only screen and (max-width: 400px) {
+      top: 73%;
+      left: 40%;
+    }
+  }
+
+  &--floor {
+    top: 60%;
+    left: 35rem;
+
+    @media only screen and (max-width: $bp-large) {
+      top: 58%;
+      left: 28rem;
+    }
+
+    @media only screen and (max-width: $bp-medium) {
+      left: 27.5rem;
+    }
+
+    @media only screen and (max-width: 600px) {
+      top: 70%;
+      left: 45%;
+    }
+
+    @media only screen and (max-width: 400px) {
+      top: 72%;
+      left: 41%;
+    }
+  } 
+}
+
+
+// js classes
+.mop-carpet {
+  width: 53%;
+  color: var(--color-txt-white);
+
+  & > .h6__08-mop__item__text {
+    width: 40%;
+    left: 53%;
+
+    & p {
+      display: none;
+    }
+  }
+
+  & > .h6__08-mop__item__video {
+    display: none;
+  }
+
+  & > .engine-indicator {
+    display: none;
+  }
+
+  & img {
+    left: -35rem;
+    filter: brightness(.5);
+
+    @media only screen and (max-width: $bp-large) {
+      left: -15rem;
+    }
+  }
+}
+
+.mop-floor {
+  color: var(--color-txt-white);
+
+  & > .h6__08-mop__item__text {
+    width: 40%;
+    left: 53%;
+
+    & p {
+      display: none;
+    }
+  }
+
+  & > .h6__08-mop__item__video {
+    opacity: 0;
+  }
+
+  & > .engine-indicator {
+    display: none;
+  }
+
+  & img {
+    left: -7rem;
+    filter: brightness(.5);
+
+    @media only screen and (max-width: $bp-large) {
+      left: 1rem;
+    }
+  }
+}

@@ -1,0 +1,249 @@
+.fullWidth {
+  width: 100%;
+  overflow: hidden;
+}
+
+.image {
+
+  &--fullWidth {
+  display: block;
+  width: 100%;
+  z-index: -1;
+  }
+
+  &--centered {
+    display: block;
+    margin: 0 auto;
+    z-index: -1;
+  }
+
+  &--right {
+    display: block;
+    margin-left: 55%;
+    z-index: -1;
+  }
+
+  &--left {
+    display: block;
+    margin-left: 5%;
+    z-index: -1;
+  }
+}
+
+// 4 images in a row
+.1of4 {
+  width: 25%;
+  position: relative;
+}
+
+
+/// Texts
+.boxDescription {
+  text-align: center;
+  z-index: 10;
+}
+
+.h1 {
+  font-size: 6vw;
+  font-weight: 500;
+  line-height: 1.4;
+
+  @media only screen and (min-width: $bp-largest) {
+    font-size: 8rem;
+  }
+
+  @media only screen and (max-width: $bp-medium) {
+    font-size: 4rem;
+  }
+
+  @media only screen and (max-width: $bp-small) {
+    font-size: 3rem;
+  }
+}
+
+.h2 {
+  font-size: 4rem;
+  font-size: 3.2vw;
+  font-weight: 700;
+  line-height: 1.4;
+
+  @media only screen and (min-width: $bp-largest) {
+    font-size: 4.2rem;
+  }
+}
+
+.h3 {
+  font-size: 2.5vw;
+  font-weight: 400;
+  line-height: 1.4;
+  margin-bottom: 2vw;
+
+  @media only screen and (min-width: $bp-largest) {
+    font-size: 3.3rem;
+  }
+
+  @media only screen and (max-width: $bp-medium) {
+    font-size: 1.9rem;
+    line-height: 1.2;
+  }
+
+  @media only screen and (max-width: $bp-small) {
+    font-size: 1.4rem;
+    line-height: 1.2;
+  }
+
+  @media only screen and (max-width: $bp-smaller) {
+    font-size: 1.2rem;
+  }
+}
+
+.h3large {
+  font-size: 4vw;
+  font-weight: 300;
+  line-height: 1.4;
+
+  @media only screen and (min-width: $bp-largest) {
+    font-size: 5.1rem;
+  }
+
+  &--2 {
+    font-size: 6vw;
+    font-weight: 300;
+    line-height: 1.2;
+
+    @media only screen and (min-width: $bp-largest) {
+      font-size: 7rem;
+    }
+  }
+}
+
+.h4 {
+  font-size: 2.6rem;
+  font-size: 2.3vw;
+  font-weight: 400;
+  letter-spacing: .1rem;
+  margin-bottom: 1vw;
+
+  @media only screen and (min-width: $bp-largest) {
+    font-size: 3rem;
+  }
+
+  @media only screen and (max-width: $bp-medium) {
+    font-size: 2rem;
+  }
+
+  @media only screen and (max-width: $bp-small) {
+    font-size: 1.2rem;
+  }
+
+  @media only screen and (max-width: 350px) {
+    font-size: 1rem;
+  }
+}
+
+.h5 {
+  font-size: 1.6rem;
+  font-size: 1.4vw;
+  font-weight: 300;
+  letter-spacing: .1rem;
+
+  @media only screen and (min-width: $bp-largest) {
+    font-size: 1.8rem;
+  }
+
+  @media only screen and (max-width: $bp-medium) {
+    font-size: 1.2rem;
+  }
+
+  @media only screen and (max-width: $bp-small) {
+    font-size: 1.1rem;
+  }
+
+  @media only screen and (max-width: $bp-smaller) {
+    font-size: .9rem;
+    line-height: 1.2;
+  }
+}
+
+.akcesoriaCaption {
+  font-size: 1.8vw;
+  font-weight: 400;
+  letter-spacing: .1rem;
+  margin-bottom: .8vw;
+}
+
+// for 'wiecej' links on home page
+.more {
+  display: inline-block;
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  font-weight: 400;
+  letter-spacing: .1rem;
+  margin-top: 1rem;
+  padding: .1rem .3rem .2rem 1rem;
+  border-radius: 3px;
+  background-color: var(--color-txt-white);
+  color: var(--color-black);
+  text-decoration: none;
+
+  &:hover {
+    color: var(--color-roborock);
+    cursor: pointer;
+  }
+}
+
+.chevron--right {
+  height: 2rem;
+  vertical-align: sub;
+}
+
+
+// add margin top
+.marTop--1 {
+  margin-top: 2rem;
+}
+
+.marTop--2 {
+  margin-top: 4vw;
+}
+
+.marTop--3 {
+  margin-top: 6vw;
+}
+
+.marTop--4 {
+  margin-top: 10vw;
+}
+
+// add margin-top to first container on the page (not to be hidden behind navigation bar)
+.marTop--navHeight {
+  margin-top: var(--nav-height);
+}
+
+// plain background divs
+.noImage {
+
+  &--navy {
+    background-color: var(--color-bg-navy);
+  }
+
+  &--white {
+    background-color: var(--color-bg-white);
+  }
+
+  &--grey {
+    background-color: var(--color-bg-grey);
+  }
+
+  &--grey--light {
+    background-color: var(--color-bg-grey-light);
+  }
+
+  &--brown {
+    background-color: var(--color-bg-brown);
+  }
+}
+
+.filtrDarken {
+  filter: brightness(60%);
+}

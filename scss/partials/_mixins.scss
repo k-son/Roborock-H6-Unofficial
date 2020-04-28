@@ -1,0 +1,51 @@
+@mixin photoBoxFull {
+  overflow: hidden;
+
+  &__image {
+    width: 100%;
+    object-fit: cover;
+  }
+}
+
+@mixin center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+
+/// H6 mixins
+
+@mixin H6-h3 {
+  font-size: 3.6rem;
+  font-weight: 300;
+  margin-bottom: 1.6rem;
+
+  @media only screen and (max-width: $bp-large) {
+    font-size: 2.4rem;
+  }
+}
+
+@mixin H6-paragraph {
+  font-size: 1.6rem;
+  line-height: 2.4rem;
+  font-weight: 300;
+
+  @media only screen and (max-width: $bp-large) {
+    font-size: 1.4rem;
+    line-height: 2.1rem;
+  }
+}
+
+@mixin animatedBattery {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  animation-name: animateBattery;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: ease-in-out;
+}

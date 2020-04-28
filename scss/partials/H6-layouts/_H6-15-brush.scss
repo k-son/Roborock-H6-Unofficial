@@ -1,0 +1,328 @@
+.h6__15-brushes {
+  display: flex;
+  height: calc(100vw / 3);
+  max-height: 40rem;
+  overflow: hidden;
+
+  @media only screen and (max-width: 720px) { 
+    display: block;
+    height: auto;
+    max-height: unset;
+  }
+
+  @media only screen and (min-width: 721px) {
+    &:hover &__item__overlay__title {
+      writing-mode: vertical-rl;
+      text-align: start;
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  &__item {
+    position: relative;
+    width: 100%;
+    flex-grow: 1;
+    flex-basis: 0;
+    transition: all .3s;
+    background-size: cover;
+    padding: 1.6rem;
+
+    @media only screen and (max-width: 720px) { 
+      height: 20vw;
+    }
+
+    &:not(:last-of-type) {
+      border-right: 1px solid #666;
+
+      @media only screen and (max-width: 800px) { 
+        border-right: none;
+        border-bottom: 1px solid #666;
+      }
+    }
+
+    &--floor {
+      background-image: url(../img/heros-H6-unfold1-pc.jpg);
+      background-position-x: 40%;
+    }
+
+    &--carpet {
+      background-image: url(../img/heros-H6-unfold2-pc.jpg);
+      background-position-x: 40%;
+    }
+
+    &--dusting {
+      background-image: url(../img/heros-H6-unfold3-pc.jpg);
+      background-position-x: 40%;
+    }
+
+    &--motorized {
+      background-image: url(../img/heros-H6-unfold4-pc.jpg);
+      background-position-x: 50%;
+    }
+
+    &--crevice {
+      background-image: url(../img/heros-H6-unfold5-pc.jpg);
+      background-position-x: 50%;
+    }
+  
+    &--flex {
+      background-image: url(../img/heros-H6-unfold6-pc.jpg);
+      background-position-x: 38%;
+    }
+
+    &:hover {
+
+      @media only screen and (min-width: 721px) {
+        flex-grow: 8;
+      }
+
+      @media only screen and (max-width: 720px) {
+        cursor: pointer;
+      }
+    }
+
+    &:hover > &__text {
+
+      @media only screen and (min-width: 721px) { 
+        top: 10%;
+        width: 40%;
+        z-index: 0;
+      }
+    }
+
+    &:hover > &__additional-text {
+
+      @media only screen and (min-width: 721px) {
+        display: block;
+      }
+    }
+
+    &:hover &__overlay {
+
+      @media only screen and (min-width: 721px) {
+        display: none;
+      }
+
+      @media only screen and (max-width: 720px) {
+        background-color: rgba(0,0,0,.6);
+      }
+    }
+
+    &__text {
+      position: absolute;
+      top: -45rem;
+      right: 5%;
+      color: #000;
+      z-index: 9;
+      transition: all .4s;
+
+      @media only screen and (max-width: 720px) { 
+        top: 10%;
+        width: 42%;
+        display: none;
+      }
+
+      @media only screen and (max-width: 352px) {
+        width: 50%;
+      }
+
+      &--floor {
+
+      }
+  
+      &--carpet {
+
+        @media only screen and (max-width: $bp-medium) {
+          left: 2%;
+        }
+
+        @media only screen and (max-width: 720px) {
+          left: unset;
+          right: 5%;
+        }
+
+        @media only screen and (max-width: 520px) {
+          right: unset;
+          left: 2%;
+        }
+      }
+  
+      &--dusting {
+        right: 2%;
+      }
+  
+      &--motorized {
+        left: 5%;
+
+        @media only screen and (max-width: 400px) {
+          left: unset;
+          right: 2%;
+        }
+      }
+  
+      &--crevice {
+        left: 5%;
+      }
+    
+      &--flex {
+        right: 2%;
+      }
+
+      & h3 {
+        font-size: 2.4rem;
+        margin-bottom: 1.6rem;
+
+        @media only screen and (max-width: $bp-large) {
+          font-size: 2rem;
+        }
+
+        @media only screen and (max-width: $bp-medium) {
+          margin-bottom: 1.2rem;
+        }
+
+        @media only screen and (max-width: 800px) { 
+          font-size: 1.6rem;
+          font-weight: 500;
+        }
+
+        @media only screen and (max-width: 720px) {
+          font-size: 2rem;
+        }
+
+        @media only screen and (max-width: 500px) {
+          font-size: 1.6rem;
+        }
+
+        @media only screen and (max-width: 450px) {
+          font-size: 1.4rem;
+          margin-bottom: .8rem;
+        }
+      }
+
+      & p {
+        font-size: 1.6rem;
+  
+        @media only screen and (max-width: $bp-large) {
+          font-size: 1.4rem;
+        }
+
+        @media only screen and (max-width: 800px) { 
+          font-size: 1.4rem;
+        }
+
+        @media only screen and (max-width: 450px) {
+          font-size: 1.2rem;
+        }
+
+        @media only screen and (max-width: 400px) {
+          background-color: rgba(255,255,255,.6);
+          padding: .4rem;
+          border-radius: 2px;
+        }
+      }
+    }
+
+    &__additional-text {
+      position: absolute;
+      left: 2%;
+      bottom: 1.6rem;
+      width: 40%;
+      font-size: 1.4rem;
+      background-color: rgba(255,255,255,.5);
+      padding: .4rem;
+      border-radius: 2px;
+      display: none;
+
+      @media only screen and (max-width: $bp-medium) {
+        left: unset;
+        right: 2%;
+      }
+
+      @media only screen and (max-width: 800px) {
+        font-size: 1.2rem;
+      }
+
+      @media only screen and (max-width: 400px) {
+        display: none !important;
+      }
+    }
+
+    &__overlay {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,.8);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: start;
+      padding: 1rem;
+
+      @media only screen and (max-width: 720px) { 
+        flex-direction: row;
+        justify-content: center;
+      }
+  
+      &__brush {
+        width: 40%;
+        height: auto;
+        margin: 3.2rem auto;
+
+        @media only screen and (max-width: 720px) { 
+          height: 70%;
+          width: auto;
+          margin: 0 3.2rem 0 0;
+        }
+
+        @media only screen and (max-width: 400px) { 
+          height: 90%;
+          margin: 0 2rem 0 0;
+        }
+      }
+  
+      &__title {
+        position: relative;
+        font-size: 2.4rem;
+        width: 70%;
+        text-align: center;
+        color: #fff;
+
+        @media only screen and (max-width: $bp-large) {
+          font-size: 2.1vw;
+        }
+
+        @media only screen and (max-width: 720px) { 
+          font-size: 2rem;
+          width: unset;
+        }
+
+        @media only screen and (max-width: 720px) { 
+          font-size: 1.6rem;
+        }
+      }
+    }
+  }
+}
+
+
+// js classes 
+.brushItemOpenHeight {
+  height: calc(100vw / 1.8) !important;
+
+  @media only screen and (max-width: 350px) {
+    height: calc(100vw / 1.6) !important;
+  }
+}
+
+.brushItemOpenText {
+  display: block !important;
+}
+
+.brushItemHideOverlay {
+  display: none !important;
+}

@@ -1,0 +1,129 @@
+.h6__03-features {
+  position: relative;
+  height: 60rem;
+
+  @media only screen and (max-width: $bp-large) {
+    height: 50rem;
+  }
+
+  @media only screen and (max-width: $bp-small) {
+    height: unset;
+  }
+
+  &__text {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 52rem;
+    margin-left: 8rem;
+    font-size: 1.6rem;
+    color: var(--color-txt-white);
+    z-index: 2;
+
+    @media only screen and (max-width: $bp-large) {
+      font-size: 1.4rem;
+      width: 40rem;
+    }
+
+    @media only screen and (max-width: $bp-small) {
+      position: static;
+      top: 0;
+      transform: translateY(0);
+      width: 100%;
+      margin: auto;
+      padding: 3.2rem;
+      background-color: var(--color-black);
+    }
+
+    @media only screen and (max-width: 460px) {
+      padding: 3.2rem 2rem;
+    }
+
+    &__features {
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 3.2rem;
+
+      @media only screen and (max-width: $bp-large) {
+        margin-bottom: 2.4rem;
+      }
+
+      @media only screen and (max-width: 400px) {
+        flex-direction: column;
+      }
+
+      &__feature {
+        width: 23rem;
+        margin-bottom: 2.4rem;
+
+        @media only screen and (max-width: $bp-large) {
+          width: 17rem;
+          margin-bottom: 1.2rem;
+        }
+
+        @media only screen and (max-width: 460px) {
+          width: 15rem;
+        }
+
+        &:nth-child(odd) {
+          margin-right: 6rem;
+
+          @media only screen and (max-width: $bp-large) {
+            margin-right: 3.2rem;
+          }
+
+          @media only screen and (max-width: $bp-small) {
+            margin-right: 4rem;
+          }
+
+          @media only screen and (max-width: 460px) {
+            margin-right: 2rem;
+          }
+        }
+
+        & p {
+
+          & span {
+            font-size: 5rem;
+            font-weight: 600;
+
+            @media only screen and (max-width: $bp-large) {
+              font-size: 3.2rem;
+            }
+
+            @media only screen and (max-width: $bp-small) {
+              font-size: 2.8rem;
+            }
+          }
+        }
+      }
+    }
+
+    &__article {
+      @include H6-paragraph;
+    }
+  }
+
+  &__image {
+    overflow: hidden;
+    height: 100%;
+  
+      & img {
+        height: 100%;
+        width: auto;
+        position: relative;
+        left: -32rem;
+  
+        @media only screen and (max-width: 800px) {
+          left: -36rem;
+        }
+
+        @media only screen and (max-width: $bp-small) {
+          left: 0;
+          width: 100%;
+          height: auto;
+        }
+      
+    }
+  }
+}

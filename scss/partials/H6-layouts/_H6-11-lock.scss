@@ -1,0 +1,136 @@
+.h6__11-lock {
+  position: relative;
+  background-color: #dbdadb;
+  overflow: hidden;
+
+  &__container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 3rem;
+    text-align: center;
+    z-index: 2;
+
+    @media only screen and (max-width: $bp-medium) {
+      padding: 2.4rem;
+    }
+    
+    @media only screen and (max-width: 751px) {
+      top: 12%;
+    }
+
+    @media only screen and (max-width: 600px) {
+      top: 8%;
+    }
+
+    @media only screen and (max-width: 500px) {
+      top: 0;
+    }
+  }
+
+  &__text {
+    width: 90%;
+    margin: 0 auto 3rem auto;
+
+    @media only screen and (max-width: $bp-medium) {
+      margin-bottom: 2.4rem;
+    }
+
+    @media only screen and (max-width: 400px) {
+      margin-bottom: 1.6rem;
+    }
+
+    & h3 {
+      @include H6-h3;
+    }
+
+    & p {
+      @include H6-paragraph;
+
+      @media only screen and (max-width: 350px) {
+        font-size: 1.2rem;
+      }
+    }
+  }
+
+  &__buttons {
+
+    &__button {
+      display: inline-block;
+      font-size: 1.6rem;
+      padding: .8rem 2.4rem;
+      border: 1px solid #000;
+      border-radius: 2.5rem;
+
+      @media only screen and (max-width: 400px) {
+        font-size: 1.4rem;
+        border: none;
+        border-bottom: 2px solid #aaa;
+        border-radius: 0;
+      }
+
+      &:first-child {
+        margin-right: 4rem;
+
+        @media only screen and (max-width: 400px) {
+          margin-right: -3px;
+        }
+      }
+
+      &:hover,
+      &:focus {
+        border-color: var(--color-roborock);
+      }
+    }
+  }
+
+  & video {
+  }
+
+  &__video {
+    display: block;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    width: 140%;
+    height: auto;
+    z-index: 0;
+
+    @media only screen and (max-width: $bp-medium) {
+      width: 180%;
+    }
+
+    @media only screen and (max-width: 751px) {
+      width: 100%;
+      height: auto;
+    }
+
+    &--lock {
+
+    }
+
+    &--unlock {
+
+    }
+  }
+}
+
+
+// js classes
+.hideVideoSectionLock {
+  position: absolute !important;
+  z-index: -1 !important;
+}
+
+.focusButtonSectionLock {
+  color: #fff;
+  background-color: var(--color-roborock);
+  border-color: var(--color-roborock);
+
+  @media only screen and (max-width: 400px) {
+    color: var(--color-roborock);
+    background-color: transparent;
+  }
+}

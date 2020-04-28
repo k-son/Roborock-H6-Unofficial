@@ -1,0 +1,29 @@
+:root {
+  --color-body-bg: #ffffff;
+  --color-roborock: #ec0829;
+  --color-black: #000;
+  --color-txt-white: #fff;
+  --color-txt-grey: #ddd;
+  --color-txt-golden: #a08437;
+  --color-txt-orange: #f8972b;
+  --color-grey-nav: #999;
+  --color-bg-navy: #112233;
+  --color-bg-white: #ffffff;
+  --color-bg-grey: #38383d;
+  --color-bg-grey-light: #c7c6c2;
+  --color-bg-brown: #422f24;
+  --color-faq-bg: #eeeeee;
+  --color-faq-box: #ffffff;
+  --color-faq-txt: #696969;
+  --color-reddish: #f1484a;
+  --color-oroborock-jamicon: #2d2d31;
+
+  --nav-height: 7rem;
+  --footer-height: 5rem;
+}
+
+$bp-largest: 81.25em;  // 1300px
+$bp-large: 68.75em;    // 1100px
+$bp-medium: 56.25em;   // 900px
+$bp-small: 37.5em;     // 600px
+$bp-smaller: 28.125em; // 450px

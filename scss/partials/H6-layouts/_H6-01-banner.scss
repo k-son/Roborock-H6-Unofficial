@@ -1,0 +1,161 @@
+.h6__01-banner {
+  position: relative;
+
+  &__image {
+    overflow: hidden;
+    font-size: 0;  /// to remove space under image 
+
+    & picture {
+      position: relative;
+      left: -12rem;
+
+      @media only screen and (max-width: $bp-large) {
+        left: -25rem;
+      }
+
+      @media only screen and (max-width: $bp-medium) {
+        left: -45rem;
+      }
+
+      @media only screen and (max-width: $bp-small) {
+        left: 0;
+        height: auto;
+
+        & img {
+          width: 100%;
+          height: auto;
+        }
+      }
+    }
+  }
+
+  &__text {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 5vw;
+    color: var(--color-txt-white);
+
+    @media only screen and (max-width: $bp-large) {
+      margin-left: 12vw;
+    }
+
+    @media only screen and (max-width: $bp-medium) {
+      margin-left: 4rem;
+    }
+
+    @media only screen and (max-width: $bp-small) {
+      position: static;
+      top: 0;
+      transform: translateY(0%);
+      margin-left: 0;
+      text-align: center;
+      padding: 2.4rem;
+      color: var(--color-black);
+      background-color: #f4f4f4;
+
+    }
+
+    & h1 {
+      font-size: 4.5rem;
+      font-weight: 400;
+      margin-bottom: 2.4rem;
+
+      @media only screen and (max-width: $bp-large) {
+        font-size: 3rem;
+        margin-bottom: 1.6rem;
+      }
+
+      @media only screen and (max-width: $bp-small) {
+        font-size: 2rem;
+        margin-bottom: .8rem;
+      }
+    }
+
+    & p {
+      font-size: 5.4rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+
+      @media only screen and (max-width: $bp-large) {
+        font-size: 3.6rem;
+        font-weight: 500;
+        letter-spacing: 0;
+      }
+
+      @media only screen and (max-width: $bp-small) {
+        display: inline;
+        font-size: 2.2rem;
+
+        &:not(:last-of-type) {
+          margin-right: .4rem;
+        }
+      }
+    }
+  }
+
+
+  /*
+  position: relative;
+
+  &__image {
+    height: 75rem;
+    background-image: url(../../../img/heros-H6-banner-pc_1512x.jpg);
+    background-size: cover;
+    background-position-x: 50%;
+
+    @media only screen and (max-width: $bp-large) {
+      height: 50rem;
+    }
+
+    @media only screen and (max-width: $bp-small) {
+      background-image: url(../../../img/heros-H6-banner-m_634x.jpg);
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+  }
+
+  &__text {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 5vw;
+    color: var(--color-txt-white);
+
+    @media only screen and (max-width: $bp-large) {
+      margin-left: 12vw;
+    }
+
+    @media only screen and (max-width: $bp-small) {
+      display: none;
+    }
+
+    & h1 {
+      font-size: 4.5rem;
+      font-weight: 400;
+      margin-bottom: 2.4rem;
+
+      @media only screen and (max-width: $bp-large) {
+        font-size: 3rem;
+        margin-bottom: 1.6rem;
+      }
+    }
+
+    & p {
+      font-size: 5.4rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+
+      @media only screen and (max-width: $bp-large) {
+        font-size: 3.6rem;
+        font-weight: 500;
+        letter-spacing: 0;
+      }
+    }
+
+    &--small-screen {
+
+    }
+  }
+  */
+}

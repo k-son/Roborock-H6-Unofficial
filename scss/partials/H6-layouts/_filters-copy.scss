@@ -1,0 +1,683 @@
+.h6__06-filters {
+  position: relative;
+  background-image: linear-gradient(to bottom, black, #10141D);
+
+  &__text {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    padding: 0 3rem;
+    margin-top: 3rem;
+    text-align: center;
+    color: var(--color-txt-white);
+    z-index: 2;
+
+    @media only screen and (max-width: 600px) {
+      position: static;
+      padding: 2.4rem;
+      background-color: var(--color-black);
+    }
+
+    & h3 {
+      @include H6-h3;
+    }
+
+    & p {
+      @include H6-paragraph;
+    }
+  }
+
+  &__indicators {
+    position: absolute;
+    top: 25%;
+    left: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    @media only screen and (max-width: $bp-large) {
+      left: 65%;
+    }
+
+    @media only screen and (max-width: 1000px) {
+      left: 60%;
+    }
+
+    @media only screen and (max-width: $bp-medium) {
+      left: 65%;
+    }
+
+    @media only screen and (max-width: 800px) {
+      top: 20%;
+      left: 55%;
+    }
+
+    @media only screen and (max-width: 600px) {
+      top: 58vw;
+      left: 60%;
+    }
+
+    @media only screen and (max-width: 500px) {
+      top: 60vw;
+      left: 55%;
+    }
+
+    @media only screen and (max-width: 422px) {
+      top: 75vw;
+      left: 48vw;
+    }
+
+    @media only screen and (max-width: 355px) {
+      top: 80vw;
+      left: 43vw;
+    }
+    
+    &__indicator {
+      height: 5rem;
+      color: var(--color-txt-white);
+      z-index: 2;
+      position: relative;
+
+      @media only screen and (max-width: 600px) {
+        height: unset;
+      }
+
+      &::before {
+        display: block;
+        content: "";
+        position: absolute;
+        top: 45%;
+        transform: translateY(-50%);
+        height: 2px;
+        background-color: #878787;
+
+        @media only screen and (max-width: $bp-medium) {
+          top: 37%;
+        }
+
+        @media only screen and (max-width: 600px) {
+          top: 30%;
+          display: none;
+        }
+      }
+
+      &--1 {
+
+        &::before {
+          --size: 23rem;
+          width: var(--size);
+          left: calc((var(--size) + 2rem)*-1);
+
+          @media only screen and (max-width: $bp-large) {
+            --size: 18rem;
+          }
+
+          @media only screen and (max-width: $bp-medium) {
+            --size: 15rem;
+          }
+
+          @media only screen and (max-width: 700px) {
+            --size: 5rem;
+            left: calc(var(--size)*-1);
+          }
+
+          @media only screen and (max-width: 422px) {
+            --size: 3rem;
+          }
+        }
+      }
+
+      &--2 {
+        margin-bottom: 9rem;
+
+        @media only screen and (max-width: 600px) {
+          margin-bottom: 16vw;
+        }
+
+        @media only screen and (max-width: 355px) {
+          margin-bottom: 13vw;
+        }
+
+        &::before {
+          --size: 19rem;
+          width: var(--size);
+          left: calc((var(--size) + 2rem)*-1);
+
+          @media only screen and (max-width: $bp-large) {
+            --size: 15rem;
+          }
+
+          @media only screen and (max-width: $bp-medium) {
+            --size: 12rem;
+          }
+
+          @media only screen and (max-width: 700px) {
+            --size: 7rem;
+            left: calc(var(--size)*-1);
+          }
+
+          @media only screen and (max-width: 422px) {
+            --size: 4rem;
+          }
+        }
+      }
+
+      &--3 {
+        margin-bottom: 6rem;
+
+        @media only screen and (max-width: 600px) {
+          margin-bottom: 10vw;
+        }
+
+        &::before {
+          --size: 16rem;
+          width: var(--size);
+          left: calc((var(--size) + 2rem)*-1);
+
+          @media only screen and (max-width: $bp-large) {
+            --size: 12rem;
+          }
+
+          @media only screen and (max-width: $bp-medium) {
+            --size: 9rem;
+          }
+
+          @media only screen and (max-width: 700px) {
+            --size: 5rem;
+            left: calc(var(--size)*-1);
+          }
+
+          @media only screen and (max-width: 422px) {
+            --size: 3rem;
+          }
+        }
+      }
+
+      &--4 {
+        margin-bottom: 4.4rem;
+
+        @media only screen and (max-width: 600px) {
+          margin-bottom: 8vw;
+        }
+
+        &::before {
+          --size: 13rem;
+          width: var(--size);
+          left: calc((var(--size) + 2rem)*-1);
+
+          @media only screen and (max-width: $bp-large) {
+            --size: 9rem;
+          }
+
+          @media only screen and (max-width: $bp-medium) {
+            --size: 6rem;
+          }
+
+          @media only screen and (max-width: 700px) {
+            --size: 3rem;
+            left: calc(var(--size)*-1);
+          }
+
+          @media only screen and (max-width: 422px) {
+            --size: 1.5rem;
+          }
+        }
+      }
+
+      &--5 {
+        margin-bottom: 6rem;
+
+        @media only screen and (max-width: 600px) {
+          margin-bottom: 5vw;
+        }
+
+        &::before {
+          --size: 10rem;
+          width: var(--size);
+          left: calc((var(--size) + 2rem)*-1);
+
+          @media only screen and (max-width: $bp-large) {
+            --size: 6rem;
+          }
+
+          @media only screen and (max-width: $bp-medium) {
+            --size: 2rem;
+            width: var(--size);
+          }
+
+          @media only screen and (max-width: 700px) {
+            left: calc(var(--size)*-1);
+          }
+
+          @media only screen and (max-width: 422px) {
+            --size: 1rem;
+          }
+        }
+      }
+
+      &__btn {
+        display: flex;
+
+        &:hover > &__digit,
+        &:focus > &__digit {
+          border-color: var(--color-roborock);
+        }
+
+        /* IF WANTED DIFFERENT DESIGN
+        @media only screen and (max-width: 600px) {
+          border: 1px solid var(--color-txt-white);
+          border-radius: 20px;
+
+          &:hover,
+          &:focus {
+            border: none;
+            padding-bottom: .5rem;
+          }
+        }
+        */
+        /*
+        &:hover > &__digit {
+          background-color: var(--color-roborock);
+          border-color: var(--color-roborock);
+        */
+          /* IF WANTED DIFFERENT DESIGN
+          @media only screen and (max-width: 600px) {
+            display: none;
+          }
+        }
+        */
+        /*
+        &:hover > &__text p {
+          display: inline;
+        }
+        */
+      
+
+        &__digit {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-shrink: 0;
+          width: 4rem;
+          height: 4rem;
+          font-size: 2.4rem;
+          margin-right: 2rem;
+          border: 1px solid var(--color-txt-white);
+          border-radius: 50%;
+
+          @media only screen and (max-width: $bp-medium) {
+            width: 3.6rem;
+            height: 3.6rem;
+            font-size: 2rem;
+          }
+
+          @media only screen and (max-width: 600px) {
+            width: 2.8rem;
+            height: 2.8rem;
+            font-size: 1.4rem;
+            margin-right: 1rem;
+          }
+
+          @media only screen and (max-width: 400px) {
+            width: 2.8rem;
+            height: 2.8rem;
+            font-size: 1.4rem;
+            margin-right: .8rem;
+          }
+        }
+
+        &__text {
+          display: inline-block;
+          width: 24rem;
+          flex-shrink: 1;
+
+          @media only screen and (max-width: $bp-medium) {
+            width: 20rem;
+          }
+
+          @media only screen and (max-width: 600px) {
+            width: 13rem;
+          }
+
+          & h6 {
+            font-size: 1.6rem;
+            line-height: 4rem;
+
+            @media only screen and (max-width: $bp-medium) {
+              line-height: 3.5rem;
+            }
+
+            @media only screen and (max-width: 600px) {
+              font-size: 1.2rem;
+              line-height: 3rem;
+            }
+          }
+
+          & p {
+            font-size: 1.4rem;
+            font-weight: 300;
+            display: none;
+
+            @media only screen and (max-width: $bp-medium) {
+              font-size: 1.2rem;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &__images {
+    position: relative;
+    height: 81rem;
+    overflow: hidden;
+
+    @media only screen and (max-width: 800px) {
+      height: 90rem;
+    }
+
+    @media only screen and (max-width: 600px) {
+      height: 75rem;
+      height: calc(100vw * 1.25);
+    }
+
+    &__machine {
+      transition: opacity .5s;
+
+      & img {
+        display: block;
+        height: 100%;
+        width: auto;
+        position: absolute;
+        top: 0;
+        left: -25%;
+
+        @media only screen and (max-width: $bp-large) {
+          left: -35%;
+        }
+
+        @media only screen and (max-width: 1000px) {
+          left: -50%;
+        }
+
+        @media only screen and (max-width: $bp-medium) {
+          left: -55%;
+        }
+
+        @media only screen and (max-width: 800px) {
+          left: 0%;
+        }
+
+        @media only screen and (max-width: 600px) {
+          width: 100%;
+          height: auto;     
+        }
+      }
+
+      &--1,
+      &--2,
+      &--3,
+      &--4,
+      &--5 {
+        opacity: 0;
+      }
+    }
+  }
+
+  &__modal {
+    width: 100vw;
+    min-height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(120, 120, 120, 0.9);
+    z-index: 999;
+    display: none;
+    overflow-y: auto;
+
+    &__content {
+      position: relative;
+      width: 86%;
+      max-width: 72rem;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: var(--color-bg-white);
+
+      @media only screen and (max-width: 601px) {
+        width: 80%;
+        margin-top: 10rem;
+      }
+      @media only screen and (max-width: 330px) {
+        margin-top: 16rem;
+      }
+
+      &__close-btn {
+        position: absolute;
+        top: 1.4rem;
+        right: -6rem;
+        display: inline-block;
+        width: 4rem;
+        height: 4rem;
+        border-radius: 50%;
+        border: 2px solid var(--color-bg-white);
+        vertical-align: middle;
+
+        @media only screen and (max-width: $bp-medium) {
+          right: 50%;
+          top: 102%;
+          transform: translateX(50%);
+          margin-bottom: 3rem;
+        }
+
+        &::before,
+        &::after {
+          display: block;
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          margin: auto;
+          width: 70%;
+          height: 2px;
+          background-color: var(--color-bg-white);
+        }
+
+        &::before {
+          transform: rotate(45deg);
+        }
+
+        &::after {
+          transform: rotate(-45deg);
+        }
+
+        &:hover {
+          border-color: #333;
+        }
+
+        &:active {
+          border-color: var(--color-roborock);
+        }
+
+        &:hover::before,
+        &:hover::after {
+          background-color: #333;
+        }
+
+        &:active::before,
+        &:active::after {
+          background-color: var(--color-roborock);
+        }
+      }
+  
+      &__header {
+        background-image: url(../img/heros-H6-modal-header-pc.png);
+        background-size: cover;
+        background-repeat: no-repeat;
+        font-size: 1.6rem;
+        line-height: 1.8;
+        font-weight: 300;
+        color: var(--color-txt-white);
+        padding: 4rem;
+
+        @media only screen and (max-width: 600px) {
+          font-size: 1.4rem;
+          padding: 2.8rem;
+        }
+      }
+  
+      &__allergens {
+        padding: 4rem;
+
+        @media only screen and (max-width: 600px) {
+          padding: 2.8rem;
+        }
+
+        &__list {
+        }
+
+        &__item {
+          display: flex;
+          flex-wrap: nowrap;
+          align-items: center;
+          font-size: 1.6rem;
+          font-weight: 300;
+
+          @media only screen and (max-width: 600px) {
+            font-size: 1.4rem;
+          }
+
+          &:not(:last-of-type) {
+            margin-bottom: 4rem;
+
+            @media only screen and (max-width: 600px) {
+              margin-bottom: 2.8rem;
+            }
+          }
+
+          &__allergen {
+            text-align: center;
+            margin-right: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            width: 9rem;
+            height: 9rem;
+
+            @media only screen and (max-width: 600px) {
+              margin-right: 1.2rem;
+            }
+
+            &__icon {
+              height: 5rem;
+
+              @media only screen and (max-width: 600px) {
+                height: 4rem;
+              }
+            }
+
+            &__name {
+            }
+          }
+
+          &__description {
+          }
+        }
+      }
+    }
+  }
+
+  &__allergensBtn {
+    z-index: 5;
+    background-image: linear-gradient(to right, #090C11, #10171F, #10171F, #090D10, #040507);
+
+    @media only screen and (max-width: 800px) and (min-width: 601px) {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 2.4rem;
+      background-image: none;
+    }
+
+    @media only screen and (max-width: 600px) {
+      background-image: linear-gradient(to right, #0B1014, #111820, #121C25, #131A22, #10141D);
+    }
+  }
+}
+
+.readMoreBtn {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.8rem;
+  font-style: italic;
+  letter-spacing: 1px;
+  text-decoration: none;
+  padding: .8rem 3.2rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  color: var(--color-txt-white);
+  background-color: var(--color-roborock);
+  border-radius: 5rem;
+  z-index: 4;
+
+  @media only screen and (max-width: $bp-medium) {
+    font-size: 1.6rem;
+    padding: .6rem 2.8rem;
+  }
+
+  @media only screen and (max-width: 700px) {
+    font-size: 1.4rem;
+    padding: .6rem 2.2rem;
+    margin-top: 3.2rem;
+    margin-bottom: 3.2rem;
+  }
+
+  @media only screen and (max-width: 400px) {
+    font-size: 1.3rem;
+  }
+
+  @media only screen and (max-width: 350px) {
+    font-size: 1.2rem;
+    padding: .6rem 1.6rem;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:hover,
+  &:focus {
+    box-shadow: 0 0 0 3px var(--color-txt-white);
+  }
+}
+
+
+// js classes
+.opacity1 {
+  opacity: 1;
+}
+
+.hoveredDigit {
+  background-color: var(--color-roborock);
+  border-color: var(--color-roborock);
+}
+
+.displayBlock {
+  display: block !important;
+}
+
+.displayInline {
+  display: inline !important;
+}
+
+.overflowHidden {
+  overflow: hidden;
+}

@@ -1,0 +1,83 @@
+.h6__12-washing {
+  position: relative;
+  overflow: hidden;
+
+  &__text {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+    text-align: center;
+    padding: 3rem;
+
+    @media only screen and (max-width: 1000px) {
+      width: 80%;
+    }
+
+    @media only screen and (max-width: $bp-medium) {
+      padding: 2.4rem;
+    }
+
+    @media only screen and (max-width: 750px) {
+      width: 90%;
+    }
+
+    @media only screen and (max-width: 700px) {
+      top: 4vw;
+    }
+
+    @media only screen and (max-width: 550px) {
+      top: 0;
+    }
+
+    @media only screen and (max-width: 400px) {
+      width: 100%;
+    }
+
+    & h3 {
+      @include H6-h3;
+    }
+
+    & p {
+      @include H6-paragraph;
+
+      @media only screen and (max-width: 400px) {
+        font-size: 1.2rem;
+      }
+    }
+  }
+
+  &__images {
+
+    & img {
+      position: relative;
+      width: 110%;
+      height: auto;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: -1;
+  
+      @media only screen and (max-width: 1000px) {
+        width: 120%;
+      }
+  
+      @media only screen and (max-width: 900px) {
+        width: 140%;
+      }
+  
+      @media only screen and (max-width: 700px) {
+        width: 100%;
+      }
+  
+      @media only screen and (max-width: 500px) {
+        width: 120%;
+      }
+
+      @media only screen and (max-width: 400px) {
+        width: 130%;
+        left: 61%;
+      }
+    }
+  }
+}

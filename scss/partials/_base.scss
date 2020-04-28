@@ -1,0 +1,31 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%; // 1rem is 10px
+  min-width: 100%;
+}
+
+body {
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.4;
+  background-color: var(--color-body-bg);
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+@font-face {
+  font-family: ProximaNova-Regular;
+  src: url(../font/ProximaNova-Regular.woff)
+}
+
+@font-face {
+  font-family: ProximaNova-Bold;
+  src: url(../font/ProximaNova-Bold.woff)
+}
