@@ -83,7 +83,7 @@ function addVideo(parentSelector, src, className, width, height) {
 openBannerVideoModalBtns.forEach(el => el.addEventListener('click', openBannerVideoModalAndCreateVideo));
 closeBannerVideoModalBtn.addEventListener('click', () => {
   closeBannerModal();
-  deleteBannerSectionVideo();
+  deleteBannerVideo();
 })
 
 function openBannerVideoModalAndCreateVideo() {
@@ -92,7 +92,7 @@ function openBannerVideoModalAndCreateVideo() {
   createBannerVideo();
   bannerVideoModal.addEventListener('click', () => {
     closeBannerModal();
-    deleteBannerSectionVideo();
+    deleteBannerVideo();
   })
   document.body.addEventListener('keydown', onKeyPressCloseBannerModalAndDeleteVideo);
   bannerVideoBox.addEventListener('click', bannerModalInsideVideoClick);
@@ -121,16 +121,15 @@ function closeBannerModal() {
   bannerNoModalKeyboardFocusableElements.forEach(el => el.setAttribute('tabindex', '0'));
 }
 
-function deleteBannerSectionVideo() {
-  const bannerVideo = document.querySelector('.h6__01-banner__modal__video-box__video');
-  bannerVideoBox.removeChild(bannerVideo);
+function deleteBannerVideo() {
+  bannerVideoBox.removeChild(bannerVideoBox.firstChild);
 }
 
 function onKeyPressCloseBannerModalAndDeleteVideo(e) {
   if (e.keyCode === 27) {
     event.preventDefault();
     closeBannerModal();
-    deleteBannerSectionVideo();
+    deleteBannerVideo();
     openBannerVideoModalBtns.forEach(el => el.addEventListener('click', openBannerVideoModalAndCreateVideo));
   }
 }
