@@ -5,6 +5,7 @@ const bannerVideoModal = document.querySelector('.h6__01-banner__modal');
 const openBannerVideoModalBtns = document.querySelectorAll('.h6__01-open-video-modal-btn');
 const closeBannerVideoModalBtn = document.querySelector('.h6__01-banner__modal__close-btn');
 const bannerVideoBox = document.querySelector('.h6__01-banner__modal__video-box');
+let keyboardFocusableElements = document.querySelectorAll('a, button, video, input, textarea, slect, details, [tabindex]:not([tabindex="-1]');
 
 // Section 4 - Battery
 const animatedElement1 = document.querySelector("#countUpValue--1");
@@ -21,7 +22,6 @@ const readAboutAllergensBtn = document.querySelector('.readMoreBtn');
 const closeAllergensModalBtn = document.querySelector('.h6__06-filters__modal__close-btn');
 const allergensModalOverlay = document.querySelector('.h6__06-filters__modal__overlay');
 const allergensModalContent = document.querySelector('.h6__06-filters__modal__content');
-let keyboardFocusableElements = document.querySelectorAll('a, button, input, textarea, slect, details, [tabindex]:not([tabindex="-1]');
 
 // Section 8 - Mop
 const mopCarpet = document.querySelector('.h6__08-mop__item--carpet');
@@ -36,7 +36,7 @@ let screenVideoLock = document.querySelector('.h6__10-screen__video--lock');
 let brushItems = document.querySelectorAll('.h6__15-brushes__item');
 const brushAdditionalText = document.querySelector('.h6__15-brushes__item__additional-text');
 
-
+/** Universal functions **/
 function debounce(func, wait, immediate) {
 	var timeout;
 	return function() {
@@ -61,7 +61,6 @@ function addVideo(parentSelector, src, className, width, height) {
     const video = document.createElement('video');
     video.autoplay = true;
     video.muted = true;
-    video.controls = true;
     video.setAttribute('playsinline', "");
     video.setAttribute('class', className);    
     if(width) {
@@ -90,7 +89,7 @@ closeBannerVideoModalBtn.addEventListener('click', () => {
 function openBannerVideoModalAndCreateVideo() {
   bannerVideoModal.classList.remove('displayNone');
   document.body.classList.add('overflowHidden');
-  createBannerSectionVideo();
+  createBannerVideo();
   bannerVideoModal.addEventListener('click', () => {
     closeBannerModal();
     deleteBannerSectionVideo();
@@ -98,21 +97,28 @@ function openBannerVideoModalAndCreateVideo() {
   document.body.addEventListener('keydown', onKeyPressCloseBannerModalAndDeleteVideo);
   bannerVideoBox.addEventListener('click', bannerModalInsideVideoClick);
   openBannerVideoModalBtns.forEach(el => el.removeEventListener('click', openBannerVideoModalAndCreateVideo));
+  bannerNoModalKeyboardFocusableElements.forEach(el => el.setAttribute('tabindex', '-1'));
 }
 
-function createBannerSectionVideo() {
+function createBannerVideo() {
   const bannerVideoMatchMedia = window.matchMedia("(max-width: 601px)");
   if (bannerVideoMatchMedia.matches) {
     addVideo('.h6__01-banner__modal__video-box', '../video/Roborock_H6_360p.mp4', 'h6__01-banner__modal__video-box__video', '100%', 'auto');
   } else {
     addVideo('.h6__01-banner__modal__video-box', '../video/Roborock_H6_720p.mp4', 'h6__01-banner__modal__video-box__video', '100%', 'auto');
   }
+  const bannerSectionVideo = document.querySelector('.h6__01-banner__modal__video-box__video');
+  bannerSectionVideo.controls = true;
+  bannerNoModalKeyboardFocusableElements = bannerNoModalKeyboardFocusableElements.filter(function(item) {
+    return item !== bannerSectionVideo;
+  })
 }
 
 function closeBannerModal() {
   bannerVideoModal.classList.add('displayNone');
   document.body.classList.remove('overflowHidden');
   openBannerVideoModalBtns.forEach(el => el.addEventListener('click', openBannerVideoModalAndCreateVideo));
+  bannerNoModalKeyboardFocusableElements.forEach(el => el.setAttribute('tabindex', '0'));
 }
 
 function deleteBannerSectionVideo() {
@@ -135,6 +141,12 @@ function bannerModalInsideVideoClick(e) {
   e.stopImmediatePropagation();
   return false;
 }
+
+keyboardFocusableElements = Array.from(keyboardFocusableElements);
+let bannerNoModalKeyboardFocusableElements = keyboardFocusableElements.slice(0);
+bannerNoModalKeyboardFocusableElements = bannerNoModalKeyboardFocusableElements.filter(function(item) {
+  return item !== closeBannerVideoModalBtn;
+})
 /** END OF: Section 1 - Banner Video **/
 
 
@@ -247,13 +259,11 @@ for (let i=0; i<filtersButtons.length; i++) {
 
 /// Allergens Modal
 // disable focus on all elements besides modal elements when modal is open
-keyboardFocusableElements = Array.from(keyboardFocusableElements);
-let noModalKeyboardFocusableElements = keyboardFocusableElements.slice(0);
-
-noModalKeyboardFocusableElements = noModalKeyboardFocusableElements.filter(function(item) {
+let filtersNoModalKeyboardFocusableElements = keyboardFocusableElements.slice(0);
+filtersNoModalKeyboardFocusableElements = filtersNoModalKeyboardFocusableElements.filter(function(item) {
   return item !== closeAllergensModalBtn;
 })
-noModalKeyboardFocusableElements = noModalKeyboardFocusableElements.filter(function(item) {
+filtersNoModalKeyboardFocusableElements = filtersNoModalKeyboardFocusableElements.filter(function(item) {
   return item !== allergensModalContent;
 })
 
@@ -262,7 +272,7 @@ readAboutAllergensBtn.addEventListener('click', function() {
   allergensModalOverlay.classList.add('displayBlock');
   document.body.classList.add('overflowHidden');
   document.body.addEventListener('keydown', closeAllergensModalOnKeypress);
-  noModalKeyboardFocusableElements.forEach(el => el.setAttribute('tabindex', '-1'));
+  filtersNoModalKeyboardFocusableElements.forEach(el => el.setAttribute('tabindex', '-1'));
 })
 
 closeAllergensModalBtn.addEventListener('click', function() {
@@ -282,7 +292,7 @@ function closeAllergensModalOnKeypress(e) {
 function closeAllergensModal() {
   allergensModalOverlay.classList.remove('displayBlock');
   document.body.classList.remove('overflowHidden');
-  noModalKeyboardFocusableElements.forEach(el => el.setAttribute('tabindex', '0'));
+  filtersNoModalKeyboardFocusableElements.forEach(el => el.setAttribute('tabindex', '0'));
 }
 
 function allergensModalInsideContentClick(e) {
