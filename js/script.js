@@ -5,7 +5,6 @@ const bannerVideoModal = document.querySelector('.h6__01-banner__modal');
 const openBannerVideoModalBtns = document.querySelectorAll('.h6__01-open-video-modal-btn');
 const closeBannerVideoModalBtn = document.querySelector('.h6__01-banner__modal__close-btn');
 const bannerVideoBox = document.querySelector('.h6__01-banner__modal__video-box');
-let keyboardFocusableElements = document.querySelectorAll('a, button, input, textarea, slect, details, [tabindex]:not([tabindex="-1]');
 
 // Section 4 - Battery
 const animatedElement1 = document.querySelector("#countUpValue--1");
@@ -22,6 +21,7 @@ const readAboutAllergensBtn = document.querySelector('.readMoreBtn');
 const closeAllergensModalBtn = document.querySelector('.h6__06-filters__modal__close-btn');
 const allergensModalOverlay = document.querySelector('.h6__06-filters__modal__overlay');
 const allergensModalContent = document.querySelector('.h6__06-filters__modal__content');
+let keyboardFocusableElements = document.querySelectorAll('a, button, input, textarea, slect, details, [tabindex]:not([tabindex="-1]');
 
 // Section 8 - Mop
 const mopCarpet = document.querySelector('.h6__08-mop__item--carpet');
@@ -82,29 +82,42 @@ function addVideo(parentSelector, src, className, width, height) {
 
 /*** Create video - Section 1 - Banner Video ***/
 openBannerVideoModalBtns.forEach(el => el.addEventListener('click', openBannerVideoModalAndCreateVideo));
-
-function openBannerVideoModalAndCreateVideo() {
-  bannerVideoModal.classList.remove('displayNone');
-  document.body.classList.add('overflowHidden');
-  createBannerSectionVideo();
-  document.body.addEventListener('keydown', onKeyPressCloseBannerModalAndDeleteVideo);
-  bannerVideoModal.addEventListener('click', () => {
-    closeBannerModal();
-    deleteBannerSectionVideo();
-  })
-  bannerVideoBox.addEventListener('click', bannerModalInsideVideoClick);
-  openBannerVideoModalBtns.forEach(el => el.removeEventListener('click', openBannerVideoModalAndCreateVideo));
-}
-
 closeBannerVideoModalBtn.addEventListener('click', () => {
   closeBannerModal();
   deleteBannerSectionVideo();
 })
 
+function openBannerVideoModalAndCreateVideo() {
+  bannerVideoModal.classList.remove('displayNone');
+  document.body.classList.add('overflowHidden');
+  createBannerSectionVideo();
+  bannerVideoModal.addEventListener('click', () => {
+    closeBannerModal();
+    deleteBannerSectionVideo();
+  })
+  document.body.addEventListener('keydown', onKeyPressCloseBannerModalAndDeleteVideo);
+  bannerVideoBox.addEventListener('click', bannerModalInsideVideoClick);
+  openBannerVideoModalBtns.forEach(el => el.removeEventListener('click', openBannerVideoModalAndCreateVideo));
+}
+
+function createBannerSectionVideo() {
+  const bannerVideoMatchMedia = window.matchMedia("(max-width: 601px)");
+  if (bannerVideoMatchMedia.matches) {
+    addVideo('.h6__01-banner__modal__video-box', '../video/Roborock_H6_360p.mp4', 'h6__01-banner__modal__video-box__video', '100%', 'auto');
+  } else {
+    addVideo('.h6__01-banner__modal__video-box', '../video/Roborock_H6_720p.mp4', 'h6__01-banner__modal__video-box__video', '100%', 'auto');
+  }
+}
+
 function closeBannerModal() {
   bannerVideoModal.classList.add('displayNone');
   document.body.classList.remove('overflowHidden');
   openBannerVideoModalBtns.forEach(el => el.addEventListener('click', openBannerVideoModalAndCreateVideo));
+}
+
+function deleteBannerSectionVideo() {
+  const bannerVideo = document.querySelector('.h6__01-banner__modal__video-box__video');
+  bannerVideoBox.removeChild(bannerVideo);
 }
 
 function onKeyPressCloseBannerModalAndDeleteVideo(e) {
@@ -121,20 +134,6 @@ function bannerModalInsideVideoClick(e) {
   e.stopPropagation();
   e.stopImmediatePropagation();
   return false;
-}
-
-function deleteBannerSectionVideo() {
-  const bannerVideo = document.querySelector('.h6__01-banner__modal__video-box__video');
-  bannerVideoBox.removeChild(bannerVideo);
-}
-
-function createBannerSectionVideo() {
-  const bannerVideoMatchMedia = window.matchMedia("(max-width: 601px)");
-  if (bannerVideoMatchMedia.matches) {
-    addVideo('.h6__01-banner__modal__video-box', '../video/Roborock_H6_360p.mp4', 'h6__01-banner__modal__video-box__video', '100%', 'auto');
-  } else {
-    addVideo('.h6__01-banner__modal__video-box', '../video/Roborock_H6_720p.mp4', 'h6__01-banner__modal__video-box__video', '100%', 'auto');
-  }
 }
 /** END OF: Section 1 - Banner Video **/
 
