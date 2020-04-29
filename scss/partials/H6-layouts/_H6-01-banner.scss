@@ -46,11 +46,13 @@
         font-size: 2rem;
       }
 
-      &:hover {
+      &:hover,
+      &:focus {
         color: var(--color-roborock);
       }
 
-      &:hover &__icon {
+      &:hover &__icon,
+      &:focus &__icon {
         fill: var(--color-roborock);
       }
 
@@ -151,11 +153,13 @@
         display: none;
       }
 
-      &:hover {
+      &:hover,
+      &:focus {
         color: var(--color-roborock);
       }
 
-      &:hover &__icon {
+      &:hover &__icon,
+      &:focus &__icon {
         fill: var(--color-roborock);
       }
 
@@ -168,7 +172,7 @@
       }
 
       &__icon {
-        height: 3rem;
+        height: 2.8rem;
         vertical-align: bottom;
         margin-left: .4rem;
         fill: var(--color-txt-white);
@@ -176,6 +180,95 @@
     }
   }
 
+  &__modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(120, 120, 120, 0.95);
+    z-index: 999;
+
+    &__close-btn {
+      position: relative;
+      display: inline-block;
+      width: 4rem;
+      height: 4rem;
+      border-radius: 50%;
+      border: 2px solid var(--color-bg-white);
+      margin-bottom: 1.6rem;
+
+      &::before,
+      &::after {
+        display: block;
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        width: 70%;
+        height: 2px;
+        background-color: var(--color-bg-white);
+      }
+
+      &::before {
+        transform: rotate(45deg);
+      }
+
+      &::after {
+        transform: rotate(-45deg);
+      }
+
+      &:hover,
+      &:focus {
+        border-color: var(--color-roborock);
+      }
+
+      &:hover::before,
+      &:hover::after,
+      &:focus::before,
+      &:focus::after {
+        background-color: var(--color-roborock);
+      }
+
+      &:active {
+        border-color: var(--color-black);
+      }
+
+      &:active::before,
+      &:active::after {
+        background-color: var(--color-black);
+      }
+    }
+
+    &__video-box {
+      width: 80%;
+      max-width: 100rem;
+
+      &__video {
+
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+  }
+}
+
+// js classes
+.displayNone {
+  display: none;
+}
+
+.overflowHidden {
+  overflow: hidden;
+}
 
   /*
   position: relative;
@@ -240,4 +333,3 @@
     }
   }
   */
-}
