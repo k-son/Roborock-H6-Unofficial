@@ -194,6 +194,7 @@ function animateValue(id, start, end, duration) {
 
 /*** Tooltip on btn press - Section 5 - House * **/
 redDots = Array.from(redDots);
+
 for (let i=0; i<redDots.length; i++) {
   redDots[i].addEventListener('click', function() {
     const index = redDots.indexOf(redDots[i]);
@@ -203,8 +204,24 @@ for (let i=0; i<redDots.length; i++) {
     this.nextElementSibling.classList.toggle('opacity1');
     cloneRedDots.forEach(el => el.classList.remove('scaleUp-dot'));
     this.classList.toggle('scaleUp-dot');
+  });
+
+  redDots[i].addEventListener('keydown', function(e) {
+    if (e.keycode === 13 || e.keyCode === 32) {
+      e.preventDefault();
+      e.stopPropagation();
+      e.stopImmediatePropagation();
+      const index = redDots.indexOf(redDots[i]);
+      const cloneRedDots = redDots.slice(0);
+      cloneRedDots.splice(index, 1);
+      cloneRedDots.forEach(el => el.nextElementSibling.classList.remove('opacity1'));
+      this.nextElementSibling.classList.toggle('opacity1');
+      cloneRedDots.forEach(el => el.classList.remove('scaleUp-dot'));
+      this.classList.toggle('scaleUp-dot');
+    }
   })
 }
+
 /** END OF: Tooltip on btn press **/
 
 
