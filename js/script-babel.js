@@ -1,20 +1,25 @@
 "use strict";
 /*** Variables ***/
-// Section 4 - Battery
+// Section 1 - Banner Video
 
-var animatedElement1 = document.querySelector("#countUpValue--1");
-var animatedElement2 = document.querySelector("#countUpValue--2"); // Section 5 - House
+var videoModalSectionBanner = document.querySelector('.h6__01-banner__modal');
+var openVideoModalBtnsSectionBanner = document.querySelectorAll('.h6__01-open-video-modal-btn');
+var closeVideoModalBtnSectionBanner = document.querySelector('.h6__01-banner__modal__close-btn');
+var videoBoxSectionBanner = document.querySelector('.h6__01-banner__modal__video-box');
+var keyboardFocusableElements = document.querySelectorAll('a, button, video, input, textarea, slect, details, [tabindex]:not([tabindex="-1]'); // Section 4 - Battery
+
+var animatedNumber1 = document.querySelector("#countUpValue--1");
+var animatedNumber2 = document.querySelector("#countUpValue--2"); // Section 5 - House
 
 var redDots = document.querySelectorAll('.red-dot__circle'); // Section 6 - Filters, Modal
 
-var filtersButtons = document.querySelectorAll('.h6__06-filters__indicators__indicator__btn');
+var filterButtons = document.querySelectorAll('.h6__06-filters__indicators__indicator__btn');
 var filterImages = document.querySelectorAll('.h6__06-filters__images__machine');
 var cloneFilterImagesContainingClassDisplayBlock = [];
 var readAboutAllergensBtn = document.querySelector('.readMoreBtn');
 var closeAllergensModalBtn = document.querySelector('.h6__06-filters__modal__close-btn');
 var allergensModalOverlay = document.querySelector('.h6__06-filters__modal__overlay');
-var allergensModalContent = document.querySelector('.h6__06-filters__modal__content');
-var keyboardFocusableElements = document.querySelectorAll('a, button, input, textarea, slect, details, [tabindex]:not([tabindex="-1]'); // Section 8 - Mop
+var allergensModalContent = document.querySelector('.h6__06-filters__modal__content'); // Section 8 - Mop
 
 var mopCarpet = document.querySelector('.h6__08-mop__item--carpet');
 var mopFloor = document.querySelector('.h6__08-mop__item--floor'); // Section 10 - Screen
@@ -25,6 +30,7 @@ var screenVideoLock = document.querySelector('.h6__10-screen__video--lock'); // 
 
 var brushItems = document.querySelectorAll('.h6__15-brushes__item');
 var brushAdditionalText = document.querySelector('.h6__15-brushes__item__additional-text');
+/** Universal functions **/
 
 function debounce(func, wait, immediate) {
   var timeout;
@@ -44,24 +50,7 @@ function debounce(func, wait, immediate) {
   };
 }
 
-;
-/*** Create video - Section 2 - Video ***/
-
-createVideosSectionVideo();
-
-function createVideosSectionVideo() {
-  var lockMatchMedia = window.matchMedia("(max-width: 601px)");
-
-  if (lockMatchMedia.matches) {
-    addVideo('.h6__02__video-box', '../video/Roborock_H6_360p.mp4', 'h6__02__video h6__02__video--small', '100%', 'auto');
-  } else {
-    addVideo('.h6__02__video-box', '../video/Roborock_H6_720p.mp4', 'h6__02__video h6__02__video--large', '100%', 'auto');
-  }
-}
-
-var createdVideoSectionVideo = document.querySelector('.h6__02__video');
-createdVideoSectionVideo.autoplay = true;
-createdVideoSectionVideo.loop = true; // Adds a new video to the document under the first element matching the parentSelector
+; // Adds a new video to the document under the first element matching the parentSelector
 
 function addVideo(parentSelector, src, className, width, height) {
   var parent = document.querySelector(parentSelector); // Check that parent exists before proceeding
@@ -69,6 +58,7 @@ function addVideo(parentSelector, src, className, width, height) {
   if (parent) {
     // Create new video element
     var video = document.createElement('video');
+    video.autoplay = true;
     video.muted = true;
     video.setAttribute('playsinline', "");
     video.setAttribute('class', className);
@@ -89,20 +79,98 @@ function addVideo(parentSelector, src, className, width, height) {
     parent.appendChild(video);
   }
 }
-/** END OF: Section 2 - Video **/
+/*** Create video - Section 1 - Banner Video ***/
+
+
+openVideoModalBtnsSectionBanner.forEach(function (el) {
+  return el.addEventListener('click', openVideoModalAndCreateVideoSectionBanner);
+});
+closeVideoModalBtnSectionBanner.addEventListener('click', function () {
+  closeModalSectionBanner();
+  deleteVideoSectionBanner();
+});
+
+function openVideoModalAndCreateVideoSectionBanner() {
+  videoModalSectionBanner.classList.remove('displayNone');
+  document.body.classList.add('overflowHidden');
+  createBannerVideo();
+  videoModalSectionBanner.addEventListener('click', function () {
+    closeModalSectionBanner();
+    deleteVideoSectionBanner();
+  });
+  document.body.addEventListener('keydown', onKeyPressCloseVideoModalAndDeleteVideoSectionBanner);
+  videoBoxSectionBanner.addEventListener('click', insideVideoClickBannerSectionModal);
+  openVideoModalBtnsSectionBanner.forEach(function (el) {
+    return el.removeEventListener('click', openVideoModalAndCreateVideoSectionBanner);
+  });
+  noModalKeyboardFocusableElementsSectionBanner.forEach(function (el) {
+    return el.setAttribute('tabindex', '-1');
+  });
+}
+
+function createBannerVideo() {
+  var videoMatchMediaSectionBanner = window.matchMedia("(max-width: 601px)");
+
+  if (videoMatchMediaSectionBanner.matches) {
+    addVideo('.h6__01-banner__modal__video-box', '../video/Roborock_H6_360p.mp4', 'h6__01-banner__modal__video-box__video', '100%', 'auto');
+  } else {
+    addVideo('.h6__01-banner__modal__video-box', '../video/Roborock_H6_720p.mp4', 'h6__01-banner__modal__video-box__video', '100%', 'auto');
+  }
+
+  var videoSectionBanner = document.querySelector('.h6__01-banner__modal__video-box__video');
+  videoSectionBanner.controls = true;
+  noModalKeyboardFocusableElementsSectionBanner = noModalKeyboardFocusableElementsSectionBanner.filter(function (item) {
+    return item !== videoSectionBanner;
+  });
+}
+
+function closeModalSectionBanner() {
+  videoModalSectionBanner.classList.add('displayNone');
+  document.body.classList.remove('overflowHidden');
+  openVideoModalBtnsSectionBanner.forEach(function (el) {
+    return el.addEventListener('click', openVideoModalAndCreateVideoSectionBanner);
+  });
+  noModalKeyboardFocusableElementsSectionBanner.forEach(function (el) {
+    return el.setAttribute('tabindex', '0');
+  });
+}
+
+function deleteVideoSectionBanner() {
+  videoBoxSectionBanner.removeChild(videoBoxSectionBanner.firstChild);
+}
+
+function onKeyPressCloseVideoModalAndDeleteVideoSectionBanner(e) {
+  if (e.keyCode === 27) {
+    event.preventDefault();
+    closeModalSectionBanner();
+    deleteVideoSectionBanner();
+    openVideoModalBtnsSectionBanner.forEach(function (el) {
+      return el.addEventListener('click', openVideoModalAndCreateVideoSectionBanner);
+    });
+  }
+}
+
+function insideVideoClickBannerSectionModal(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  e.stopImmediatePropagation();
+  return false;
+}
+
+keyboardFocusableElements = Array.from(keyboardFocusableElements);
+var noModalKeyboardFocusableElementsSectionBanner = keyboardFocusableElements.slice(0);
+noModalKeyboardFocusableElementsSectionBanner = noModalKeyboardFocusableElementsSectionBanner.filter(function (item) {
+  return item !== closeVideoModalBtnSectionBanner;
+});
+/** END OF: Section 1 - Banner Video **/
 
 /*** Animate countup - Section 4 - Battery ***/
-
 
 window.addEventListener('scroll', startCountupWhenInViewport);
 
 function startCountupWhenInViewport() {
-  if (isElementInViewport(animatedElement1)) {
+  if (isElementInViewport(animatedNumber1) || isElementInViewport(animatedNumber2)) {
     animateValue("countUpValue--1", 0, 90, 2000);
-    window.removeEventListener('scroll', startCountupWhenInViewport);
-  }
-
-  if (isElementInViewport(animatedElement2)) {
     animateValue("countUpValue--2", 0, 10, 1500);
     window.removeEventListener('scroll', startCountupWhenInViewport);
   }
@@ -138,12 +206,34 @@ redDots = Array.from(redDots);
 var _loop = function _loop(i) {
   redDots[i].addEventListener('click', function () {
     var index = redDots.indexOf(redDots[i]);
-    var cloneRedDots = redDots.slice();
+    var cloneRedDots = redDots.slice(0);
     cloneRedDots.splice(index, 1);
     cloneRedDots.forEach(function (el) {
       return el.nextElementSibling.classList.remove('opacity1');
     });
     this.nextElementSibling.classList.toggle('opacity1');
+    cloneRedDots.forEach(function (el) {
+      return el.classList.remove('scaleUp-dot');
+    });
+    this.classList.toggle('scaleUp-dot');
+  });
+  redDots[i].addEventListener('keydown', function (e) {
+    if (e.keycode === 13 || e.keyCode === 32) {
+      e.preventDefault();
+      e.stopPropagation();
+      e.stopImmediatePropagation();
+      var index = redDots.indexOf(redDots[i]);
+      var cloneRedDots = redDots.slice(0);
+      cloneRedDots.splice(index, 1);
+      cloneRedDots.forEach(function (el) {
+        return el.nextElementSibling.classList.remove('opacity1');
+      });
+      this.nextElementSibling.classList.toggle('opacity1');
+      cloneRedDots.forEach(function (el) {
+        return el.classList.remove('scaleUp-dot');
+      });
+      this.classList.toggle('scaleUp-dot');
+    }
   });
 };
 
@@ -162,23 +252,23 @@ filterImages = Array.from(filterImages);
 var baseFilterImage = filterImages[0];
 filterImages.shift();
 filterImages.reverse();
-filtersButtons = Array.from(filtersButtons);
+filterButtons = Array.from(filterButtons);
 filterImages.forEach(function (el) {
   return el.style.display = "none";
 });
 
 var _loop2 = function _loop2(_i) {
-  filtersButtons[_i].addEventListener('click', function () {
-    var index = filtersButtons.indexOf(filtersButtons[_i]);
-    var cloneFiltersButtons = filtersButtons.slice(0);
-    cloneFiltersButtons.splice(index, 1);
+  filterButtons[_i].addEventListener('click', function () {
+    var index = filterButtons.indexOf(filterButtons[_i]);
+    var cloneFilterButtons = filterButtons.slice(0);
+    cloneFilterButtons.splice(index, 1);
     var cloneFilterImages = filterImages.slice(0);
     cloneFilterImages.splice(index, 1); // handle buttons' styles
 
-    cloneFiltersButtons.forEach(function (el) {
+    cloneFilterButtons.forEach(function (el) {
       return el.firstElementChild.classList.remove('hoveredDigit');
     });
-    cloneFiltersButtons.forEach(function (el) {
+    cloneFilterButtons.forEach(function (el) {
       return el.lastElementChild.lastElementChild.classList.remove('displayInline');
     }); //contract button's inner text
 
@@ -210,18 +300,17 @@ var _loop2 = function _loop2(_i) {
   });
 };
 
-for (var _i = 0; _i < filtersButtons.length; _i++) {
+for (var _i = 0; _i < filterButtons.length; _i++) {
   _loop2(_i);
 } /// Allergens Modal
 // disable focus on all elements besides modal elements when modal is open
 
 
-keyboardFocusableElements = Array.from(keyboardFocusableElements);
-var noModalKeyboardFocusableElements = keyboardFocusableElements.slice(0);
-noModalKeyboardFocusableElements = noModalKeyboardFocusableElements.filter(function (item) {
+var filtersNoModalKeyboardFocusableElements = keyboardFocusableElements.slice(0);
+filtersNoModalKeyboardFocusableElements = filtersNoModalKeyboardFocusableElements.filter(function (item) {
   return item !== closeAllergensModalBtn;
 });
-noModalKeyboardFocusableElements = noModalKeyboardFocusableElements.filter(function (item) {
+filtersNoModalKeyboardFocusableElements = filtersNoModalKeyboardFocusableElements.filter(function (item) {
   return item !== allergensModalContent;
 }); // open/close modal events
 
@@ -229,7 +318,7 @@ readAboutAllergensBtn.addEventListener('click', function () {
   allergensModalOverlay.classList.add('displayBlock');
   document.body.classList.add('overflowHidden');
   document.body.addEventListener('keydown', closeAllergensModalOnKeypress);
-  noModalKeyboardFocusableElements.forEach(function (el) {
+  filtersNoModalKeyboardFocusableElements.forEach(function (el) {
     return el.setAttribute('tabindex', '-1');
   });
 });
@@ -249,7 +338,7 @@ function closeAllergensModalOnKeypress(e) {
 function closeAllergensModal() {
   allergensModalOverlay.classList.remove('displayBlock');
   document.body.classList.remove('overflowHidden');
-  noModalKeyboardFocusableElements.forEach(function (el) {
+  filtersNoModalKeyboardFocusableElements.forEach(function (el) {
     return el.setAttribute('tabindex', '0');
   });
 }
@@ -360,38 +449,38 @@ function createVideosSectionLock() {
 } /// Replace videos if window resize pass the screen width breakpoint value
 
 
-var lockCurrentScreenWidth = window.innerWidth;
+var currentScreenWidthSectionLock = window.innerWidth;
 var breakPointForSectionLock = 751; // screen width: 751px 
 
 var appendHiResVideos = debounce(function () {
-  var lockNewScreenWidth = window.innerWidth;
+  var newScreenWidthSectionLock = window.innerWidth;
 
-  if (lockNewScreenWidth > breakPointForSectionLock) {
+  if (newScreenWidthSectionLock > breakPointForSectionLock) {
     removeLockUnlockVideos();
     addVideo('.h6__11-lock', '../video/heros-H6-video-lock-pc.mp4', 'h6__11-lock__video h6__11-lock__video--lock hideVideoSectionLock', '100%', 'auto');
     addVideo('.h6__11-lock', '../video/heros-H6-video-unlock-pc.mp4', 'h6__11-lock__video h6__11-lock__video--unlock', '100%', 'auto');
   }
 
-  lockCurrentScreenWidth = window.innerWidth;
+  currentScreenWidthSectionLock = window.innerWidth;
   replaceLockUnlockVideos();
 }, 250);
 var appendLowResVideos = debounce(function () {
-  var lockNewScreenWidth = window.innerWidth;
+  var newScreenWidthSectionLock = window.innerWidth;
 
-  if (lockNewScreenWidth <= breakPointForSectionLock) {
+  if (newScreenWidthSectionLock <= breakPointForSectionLock) {
     removeLockUnlockVideos();
     addVideo('.h6__11-lock', '../video/heros-H6-video-lock-m.mp4', 'h6__11-lock__video h6__11-lock__video--lock hideVideoSectionLock', '100%', 'auto');
     addVideo('.h6__11-lock', '../video/heros-H6-video-unlock-m.mp4', 'h6__11-lock__video h6__11-lock__video--unlock', '100%', 'auto');
   }
 
-  lockCurrentScreenWidth = window.innerWidth;
+  currentScreenWidthSectionLock = window.innerWidth;
   replaceLockUnlockVideos();
 }, 250);
 
 function replaceLockUnlockVideos() {
-  if (lockCurrentScreenWidth <= breakPointForSectionLock) {
+  if (currentScreenWidthSectionLock <= breakPointForSectionLock) {
     window.addEventListener('resize', appendHiResVideos);
-  } else if (lockCurrentScreenWidth > breakPointForSectionLock) {
+  } else if (currentScreenWidthSectionLock > breakPointForSectionLock) {
     window.addEventListener('resize', appendLowResVideos);
   }
 }
@@ -407,13 +496,13 @@ function removeLockUnlockVideos() {
 } /// Play videos
 
 
-var lockVideoLock;
-var lockVideoUnlock;
-var playLockVideoLockBtn = document.querySelector('.h6__11-lock__buttons__button--lock');
-var playLockVideoUnlockBtn = document.querySelector('.h6__11-lock__buttons__button--unlock');
-playLockVideoLockBtn.classList.add('focusButtonSectionLock');
-playLockVideoLockBtn.addEventListener('click', playLockVideoLock);
-playLockVideoUnlockBtn.addEventListener('click', playLockVideoUnlock); // Play video once on load to make it appear on iPhones
+var lockVideo;
+var unlockVideo;
+var playLockVideoBtn = document.querySelector('.h6__11-lock__buttons__button--lock');
+var playUnlockVideoBtn = document.querySelector('.h6__11-lock__buttons__button--unlock');
+playLockVideoBtn.classList.add('focusButtonSectionLock');
+playLockVideoBtn.addEventListener('click', playLockVideoLock);
+playUnlockVideoBtn.addEventListener('click', playLockVideoUnlock); // Play video once on load to make it appear on iPhones
 
 setTimeout(function () {
   playLockVideoLock();
@@ -421,33 +510,33 @@ setTimeout(function () {
 
 function playLockVideoLock() {
   getVideosSectionLock();
-  playLockVideoUnlockBtn.classList.remove('focusButtonSectionLock');
+  playUnlockVideoBtn.classList.remove('focusButtonSectionLock');
 
-  if (!playLockVideoLockBtn.classList.contains('focusButtonSectionLock')) {
+  if (!playLockVideoBtn.classList.contains('focusButtonSectionLock')) {
     this.classList.add('focusButtonSectionLock');
   }
 
-  lockVideoUnlock.classList.add('hideVideoSectionLock');
-  lockVideoLock.classList.remove('hideVideoSectionLock');
-  lockVideoLock.play();
+  unlockVideo.classList.add('hideVideoSectionLock');
+  lockVideo.classList.remove('hideVideoSectionLock');
+  lockVideo.play();
 }
 
 function playLockVideoUnlock() {
   getVideosSectionLock();
-  playLockVideoLockBtn.classList.remove('focusButtonSectionLock');
+  playLockVideoBtn.classList.remove('focusButtonSectionLock');
 
-  if (!playLockVideoUnlockBtn.classList.contains('focusButtonSectionLock')) {
+  if (!playUnlockVideoBtn.classList.contains('focusButtonSectionLock')) {
     this.classList.add('focusButtonSectionLock');
   }
 
-  lockVideoLock.classList.add('hideVideoSectionLock');
-  lockVideoUnlock.classList.remove('hideVideoSectionLock');
-  lockVideoUnlock.play();
+  lockVideo.classList.add('hideVideoSectionLock');
+  unlockVideo.classList.remove('hideVideoSectionLock');
+  unlockVideo.play();
 }
 
 function getVideosSectionLock() {
-  lockVideoLock = document.querySelector('.h6__11-lock__video--lock');
-  lockVideoUnlock = document.querySelector('.h6__11-lock__video--unlock');
+  lockVideo = document.querySelector('.h6__11-lock__video--lock');
+  unlockVideo = document.querySelector('.h6__11-lock__video--unlock');
 }
 /** END OF: Section 11 - Lock **/
 
@@ -456,9 +545,9 @@ function getVideosSectionLock() {
 
 brushItems = Array.from(brushItems);
 var brushBreakPoint = 720;
-var brushCurrentScreenWidth = window.innerWidth;
+var currentScreenWidthSectionBrush = window.innerWidth;
 window.addEventListener('load', function () {
-  if (brushCurrentScreenWidth <= brushBreakPoint) {
+  if (currentScreenWidthSectionBrush <= brushBreakPoint) {
     brushMobileEvents();
   }
 });
@@ -494,10 +583,10 @@ function brushMobileEvents() {
   for (var _i3 = 0; _i3 < brushItems.length; _i3++) {
     _loop4(_i3);
   }
-} // When resizing window from over brushBreakPoint width to under brushBreakPoint width
+} // When resizing window from over-brushBreakPoint width to under-brushBreakPoint width
 
 
-if (brushCurrentScreenWidth > brushBreakPoint) {
+if (currentScreenWidthSectionBrush > brushBreakPoint) {
   window.addEventListener('resize', whenResizedToMobileLoadMobileBrushEvents);
 }
 
@@ -506,10 +595,10 @@ function whenResizedToMobileLoadMobileBrushEvents() {
     brushMobileEvents();
     window.removeEventListener('resize', whenResizedToMobileLoadMobileBrushEvents);
   }
-} // When resizing window from under brushBreakPoint width to over brushBreakPoint width
+} // When resizing window from under-brushBreakPoint width to over-brushBreakPoint width
 
 
-var whenResizedToDesktop = debounce(function () {
+var whenResizedToDesktopSectionBrush = debounce(function () {
   if (window.innerWidth > brushBreakPoint) {
     closeBrushAccordion();
     window.removeEventListener('resize', whenResizedToMobileLoadMobileBrushEvents);
@@ -529,5 +618,5 @@ function closeBrushAccordion() {
   brushAdditionalText.classList.remove('brushItemOpenText');
 }
 
-window.addEventListener('resize', whenResizedToDesktop);
+window.addEventListener('resize', whenResizedToDesktopSectionBrush);
 /** END OF: Section 15 - Brushes **/
