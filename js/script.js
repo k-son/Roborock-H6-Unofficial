@@ -15,7 +15,7 @@ const animatedNumber2 = document.querySelector("#countUpValue--2");
 let redDots = document.querySelectorAll('.red-dot__circle');
 
 // Section 6 - Filters, Modal
-let filtersButtons = document.querySelectorAll('.h6__06-filters__indicators__indicator__btn');
+let filterButtons = document.querySelectorAll('.h6__06-filters__indicators__indicator__btn');
 let filterImages = document.querySelectorAll('.h6__06-filters__images__machine');
 const cloneFilterImagesContainingClassDisplayBlock = [];
 const readAboutAllergensBtn = document.querySelector('.readMoreBtn');
@@ -35,6 +35,7 @@ let screenVideoLock = document.querySelector('.h6__10-screen__video--lock');
 // Section 15 - Brushes
 let brushItems = document.querySelectorAll('.h6__15-brushes__item');
 const brushAdditionalText = document.querySelector('.h6__15-brushes__item__additional-text');
+
 
 /** Universal functions **/
 function debounce(func, wait, immediate) {
@@ -196,10 +197,12 @@ redDots = Array.from(redDots);
 for (let i=0; i<redDots.length; i++) {
   redDots[i].addEventListener('click', function() {
     const index = redDots.indexOf(redDots[i]);
-    const cloneRedDots = redDots.slice();
+    const cloneRedDots = redDots.slice(0);
     cloneRedDots.splice(index, 1);
     cloneRedDots.forEach(el => el.nextElementSibling.classList.remove('opacity1'));
     this.nextElementSibling.classList.toggle('opacity1');
+    cloneRedDots.forEach(el => el.classList.remove('scaleUp-dot'));
+    this.classList.toggle('scaleUp-dot');
   })
 }
 /** END OF: Tooltip on btn press **/
@@ -213,21 +216,21 @@ filterImages = Array.from(filterImages);
 const baseFilterImage = filterImages[0];
 filterImages.shift();
 filterImages.reverse();
-filtersButtons = Array.from(filtersButtons);
+filterButtons = Array.from(filterButtons);
 
 filterImages.forEach(el => el.style.display = "none");
 
-for (let i=0; i<filtersButtons.length; i++) {
-  filtersButtons[i].addEventListener('click', function() { 
-    const index = filtersButtons.indexOf(filtersButtons[i]);
-    const cloneFiltersButtons = filtersButtons.slice(0);
-    cloneFiltersButtons.splice(index, 1);
+for (let i=0; i<filterButtons.length; i++) {
+  filterButtons[i].addEventListener('click', function() { 
+    const index = filterButtons.indexOf(filterButtons[i]);
+    const cloneFilterButtons = filterButtons.slice(0);
+    cloneFilterButtons.splice(index, 1);
     const cloneFilterImages = filterImages.slice(0);
     cloneFilterImages.splice(index, 1);
 
     // handle buttons' styles
-    cloneFiltersButtons.forEach(el => el.firstElementChild.classList.remove('hoveredDigit'));
-    cloneFiltersButtons.forEach(el => el.lastElementChild.lastElementChild.classList.remove('displayInline')); //contract button's inner text
+    cloneFilterButtons.forEach(el => el.firstElementChild.classList.remove('hoveredDigit'));
+    cloneFilterButtons.forEach(el => el.lastElementChild.lastElementChild.classList.remove('displayInline')); //contract button's inner text
     this.firstElementChild.classList.toggle('hoveredDigit');
     this.lastElementChild.lastElementChild.classList.toggle('displayInline'); //expand button's inner text
 
@@ -264,14 +267,14 @@ filtersNoModalKeyboardFocusableElements = filtersNoModalKeyboardFocusableElement
 })
 
 // open/close modal events
-readAboutAllergensBtn.addEventListener('click', function() {
+readAboutAllergensBtn.addEventListener('click', () => {
   allergensModalOverlay.classList.add('displayBlock');
   document.body.classList.add('overflowHidden');
   document.body.addEventListener('keydown', closeAllergensModalOnKeypress);
   filtersNoModalKeyboardFocusableElements.forEach(el => el.setAttribute('tabindex', '-1'));
 })
 
-closeAllergensModalBtn.addEventListener('click', function() {
+closeAllergensModalBtn.addEventListener('click', () => {
   closeAllergensModal();
 })
 
@@ -303,7 +306,6 @@ function allergensModalInsideContentClick(e) {
 /*** Transform divs on hover - Section 8 - Mop ***/
 const checkIfScreenOver801pxWide = debounce(function() {
   const mopMatchMedia = window.matchMedia("(min-width: 801px)");
-  
   if (mopMatchMedia.matches) {
     mopFloor.classList.add('mop-floor');
     mopFloor.addEventListener('mouseover', hideMopCarpet);
@@ -386,35 +388,35 @@ function createVideosSectionLock() {
 }
 
 /// Replace videos if window resize pass the screen width breakpoint value
-let lockCurrentScreenWidth = window.innerWidth;
+let currentScreenWidthSectionLock = window.innerWidth;
 const breakPointForSectionLock = 751; // screen width: 751px 
 
 const appendHiResVideos = debounce(function() {
-  const lockNewScreenWidth = window.innerWidth;
-  if (lockNewScreenWidth > breakPointForSectionLock) {
+  const newScreenWidthSectionLock = window.innerWidth;
+  if (newScreenWidthSectionLock > breakPointForSectionLock) {
     removeLockUnlockVideos();
     addVideo('.h6__11-lock', '../video/heros-H6-video-lock-pc.mp4', 'h6__11-lock__video h6__11-lock__video--lock hideVideoSectionLock', '100%', 'auto');
     addVideo('.h6__11-lock', '../video/heros-H6-video-unlock-pc.mp4', 'h6__11-lock__video h6__11-lock__video--unlock', '100%', 'auto');
   }
-  lockCurrentScreenWidth = window.innerWidth;
+  currentScreenWidthSectionLock = window.innerWidth;
   replaceLockUnlockVideos();
 }, 250);
 
 const appendLowResVideos = debounce(function() {
-  const lockNewScreenWidth = window.innerWidth;
-  if (lockNewScreenWidth <= breakPointForSectionLock) {
+  const newScreenWidthSectionLock = window.innerWidth;
+  if (newScreenWidthSectionLock <= breakPointForSectionLock) {
     removeLockUnlockVideos();
     addVideo('.h6__11-lock', '../video/heros-H6-video-lock-m.mp4', 'h6__11-lock__video h6__11-lock__video--lock hideVideoSectionLock', '100%', 'auto');
     addVideo('.h6__11-lock', '../video/heros-H6-video-unlock-m.mp4', 'h6__11-lock__video h6__11-lock__video--unlock', '100%', 'auto');
   }
-  lockCurrentScreenWidth = window.innerWidth;
+  currentScreenWidthSectionLock = window.innerWidth;
   replaceLockUnlockVideos();
 }, 250);
 
 function replaceLockUnlockVideos() {
-  if (lockCurrentScreenWidth <= breakPointForSectionLock) {
+  if (currentScreenWidthSectionLock <= breakPointForSectionLock) {
     window.addEventListener('resize', appendHiResVideos);
-  } else if (lockCurrentScreenWidth > breakPointForSectionLock) {
+  } else if (currentScreenWidthSectionLock > breakPointForSectionLock) {
     window.addEventListener('resize', appendLowResVideos);
   }
 }
@@ -429,14 +431,14 @@ function removeLockUnlockVideos() {
 }
 
 /// Play videos
-let lockVideoLock;
-let lockVideoUnlock;
-const playLockVideoLockBtn = document.querySelector('.h6__11-lock__buttons__button--lock');
-const playLockVideoUnlockBtn = document.querySelector('.h6__11-lock__buttons__button--unlock');
+let lockVideo;
+let unlockVideo;
+const playLockVideoBtn = document.querySelector('.h6__11-lock__buttons__button--lock');
+const playUnlockVideoBtn = document.querySelector('.h6__11-lock__buttons__button--unlock');
 
-playLockVideoLockBtn.classList.add('focusButtonSectionLock');
-playLockVideoLockBtn.addEventListener('click', playLockVideoLock);
-playLockVideoUnlockBtn.addEventListener('click', playLockVideoUnlock);
+playLockVideoBtn.classList.add('focusButtonSectionLock');
+playLockVideoBtn.addEventListener('click', playLockVideoLock);
+playUnlockVideoBtn.addEventListener('click', playLockVideoUnlock);
 
 // Play video once on load to make it appear on iPhones
 setTimeout(() => {
@@ -445,29 +447,29 @@ setTimeout(() => {
 
 function playLockVideoLock() {
   getVideosSectionLock();
-  playLockVideoUnlockBtn.classList.remove('focusButtonSectionLock');
-  if (!playLockVideoLockBtn.classList.contains('focusButtonSectionLock')) {
+  playUnlockVideoBtn.classList.remove('focusButtonSectionLock');
+  if (!playLockVideoBtn.classList.contains('focusButtonSectionLock')) {
     this.classList.add('focusButtonSectionLock');
   }
-  lockVideoUnlock.classList.add('hideVideoSectionLock');
-  lockVideoLock.classList.remove('hideVideoSectionLock');
-  lockVideoLock.play();
+  unlockVideo.classList.add('hideVideoSectionLock');
+  lockVideo.classList.remove('hideVideoSectionLock');
+  lockVideo.play();
 }
 
 function playLockVideoUnlock() {
   getVideosSectionLock();
-  playLockVideoLockBtn.classList.remove('focusButtonSectionLock');
-  if (!playLockVideoUnlockBtn.classList.contains('focusButtonSectionLock')) {
+  playLockVideoBtn.classList.remove('focusButtonSectionLock');
+  if (!playUnlockVideoBtn.classList.contains('focusButtonSectionLock')) {
     this.classList.add('focusButtonSectionLock');
   }
-  lockVideoLock.classList.add('hideVideoSectionLock');
-  lockVideoUnlock.classList.remove('hideVideoSectionLock');
-  lockVideoUnlock.play();
+  lockVideo.classList.add('hideVideoSectionLock');
+  unlockVideo.classList.remove('hideVideoSectionLock');
+  unlockVideo.play();
 }
 
 function getVideosSectionLock() {
-  lockVideoLock = document.querySelector('.h6__11-lock__video--lock'); 
-  lockVideoUnlock = document.querySelector('.h6__11-lock__video--unlock');
+  lockVideo = document.querySelector('.h6__11-lock__video--lock'); 
+  unlockVideo = document.querySelector('.h6__11-lock__video--unlock');
 }
 /** END OF: Section 11 - Lock **/
 
@@ -475,10 +477,10 @@ function getVideosSectionLock() {
 /*** Section 15 - Brushes ***/
 brushItems = Array.from(brushItems);
 const brushBreakPoint = 720;
-let brushCurrentScreenWidth = window.innerWidth;
+let currentScreenWidthSectionBrush = window.innerWidth;
 
 window.addEventListener('load', function() {
-  if (brushCurrentScreenWidth <= brushBreakPoint) {
+  if (currentScreenWidthSectionBrush <= brushBreakPoint) {
     brushMobileEvents();
   }
 });
@@ -505,8 +507,8 @@ function brushMobileEvents() {
   }
 }
 
-// When resizing window from over brushBreakPoint width to under brushBreakPoint width
-if (brushCurrentScreenWidth > brushBreakPoint) {
+// When resizing window from over-brushBreakPoint width to under-brushBreakPoint width
+if (currentScreenWidthSectionBrush > brushBreakPoint) {
   window.addEventListener('resize', whenResizedToMobileLoadMobileBrushEvents);
 }
 
@@ -517,8 +519,8 @@ function whenResizedToMobileLoadMobileBrushEvents() {
   }
 }
 
-// When resizing window from under brushBreakPoint width to over brushBreakPoint width
-const whenResizedToDesktop = debounce(function() {
+// When resizing window from under-brushBreakPoint width to over-brushBreakPoint width
+const whenResizedToDesktopSectionBrush = debounce(function() {
   if (window.innerWidth > brushBreakPoint) {
     closeBrushAccordion();
     window.removeEventListener('resize', whenResizedToMobileLoadMobileBrushEvents);
@@ -532,5 +534,5 @@ function closeBrushAccordion() {
   brushAdditionalText.classList.remove('brushItemOpenText');
 }
 
-window.addEventListener('resize', whenResizedToDesktop);
+window.addEventListener('resize', whenResizedToDesktopSectionBrush);
 /** END OF: Section 15 - Brushes **/
