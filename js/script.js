@@ -151,18 +151,7 @@ noModalKeyboardFocusableElementsSectionBanner = noModalKeyboardFocusableElements
 
 /*** Animate countup - Section 4 - Battery ***/
 window.addEventListener('scroll', startCountupWhenInViewport);
-/*
-function startCountupWhenInViewport() {
-  if (isElementInViewport(animatedNumber1)) {
-    animateValue("countUpValue--1", 0, 90, 2000);
-    window.removeEventListener('scroll', startCountupWhenInViewport);
-  }
-  if (isElementInViewport(animatedNumber2)) {  
-    animateValue("countUpValue--2", 0, 10, 1500);
-    window.removeEventListener('scroll', startCountupWhenInViewport);
-  }
-}
-*/
+
 function startCountupWhenInViewport() {
   if (isElementInViewport(animatedNumber1) || isElementInViewport(animatedNumber2)) {
     animateValue("countUpValue--1", 0, 90, 2000);
