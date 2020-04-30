@@ -1,15 +1,15 @@
 "use strict";
 /*** Variables ***/
 // Section 1 - Banner Video
-const bannerVideoModal = document.querySelector('.h6__01-banner__modal');
-const openBannerVideoModalBtns = document.querySelectorAll('.h6__01-open-video-modal-btn');
-const closeBannerVideoModalBtn = document.querySelector('.h6__01-banner__modal__close-btn');
-const bannerVideoBox = document.querySelector('.h6__01-banner__modal__video-box');
+const videoModalSectionBanner = document.querySelector('.h6__01-banner__modal');
+const openVideoModalBtnsSectionBanner = document.querySelectorAll('.h6__01-open-video-modal-btn');
+const closeVideoModalBtnSectionBanner = document.querySelector('.h6__01-banner__modal__close-btn');
+const videoBoxSectionBanner = document.querySelector('.h6__01-banner__modal__video-box');
 let keyboardFocusableElements = document.querySelectorAll('a, button, video, input, textarea, slect, details, [tabindex]:not([tabindex="-1]');
 
 // Section 4 - Battery
-const animatedElement1 = document.querySelector("#countUpValue--1");
-const animatedElement2 = document.querySelector("#countUpValue--2");
+const animatedNumber1 = document.querySelector("#countUpValue--1");
+const animatedNumber2 = document.querySelector("#countUpValue--2");
 
 // Section 5 - House
 let redDots = document.querySelectorAll('.red-dot__circle');
@@ -80,61 +80,61 @@ function addVideo(parentSelector, src, className, width, height) {
 
 
 /*** Create video - Section 1 - Banner Video ***/
-openBannerVideoModalBtns.forEach(el => el.addEventListener('click', openBannerVideoModalAndCreateVideo));
-closeBannerVideoModalBtn.addEventListener('click', () => {
-  closeBannerModal();
-  deleteBannerVideo();
+openVideoModalBtnsSectionBanner.forEach(el => el.addEventListener('click', openVideoModalAndCreateVideoSectionBanner));
+closeVideoModalBtnSectionBanner.addEventListener('click', () => {
+  closeModalSectionBanner();
+  deleteVideoSectionBanner();
 })
 
-function openBannerVideoModalAndCreateVideo() {
-  bannerVideoModal.classList.remove('displayNone');
+function openVideoModalAndCreateVideoSectionBanner() {
+  videoModalSectionBanner.classList.remove('displayNone');
   document.body.classList.add('overflowHidden');
   createBannerVideo();
-  bannerVideoModal.addEventListener('click', () => {
-    closeBannerModal();
-    deleteBannerVideo();
+  videoModalSectionBanner.addEventListener('click', () => {
+    closeModalSectionBanner();
+    deleteVideoSectionBanner();
   })
-  document.body.addEventListener('keydown', onKeyPressCloseBannerModalAndDeleteVideo);
-  bannerVideoBox.addEventListener('click', bannerModalInsideVideoClick);
-  openBannerVideoModalBtns.forEach(el => el.removeEventListener('click', openBannerVideoModalAndCreateVideo));
-  bannerNoModalKeyboardFocusableElements.forEach(el => el.setAttribute('tabindex', '-1'));
+  document.body.addEventListener('keydown', onKeyPressCloseVideoModalAndDeleteVideoSectionBanner);
+  videoBoxSectionBanner.addEventListener('click', insideVideoClickBannerSectionModal);
+  openVideoModalBtnsSectionBanner.forEach(el => el.removeEventListener('click', openVideoModalAndCreateVideoSectionBanner));
+  noModalKeyboardFocusableElementsSectionBanner.forEach(el => el.setAttribute('tabindex', '-1'));
 }
 
 function createBannerVideo() {
-  const bannerVideoMatchMedia = window.matchMedia("(max-width: 601px)");
-  if (bannerVideoMatchMedia.matches) {
+  const videoMatchMediaSectionBanner = window.matchMedia("(max-width: 601px)");
+  if (videoMatchMediaSectionBanner.matches) {
     addVideo('.h6__01-banner__modal__video-box', '../video/Roborock_H6_360p.mp4', 'h6__01-banner__modal__video-box__video', '100%', 'auto');
   } else {
     addVideo('.h6__01-banner__modal__video-box', '../video/Roborock_H6_720p.mp4', 'h6__01-banner__modal__video-box__video', '100%', 'auto');
   }
-  const bannerSectionVideo = document.querySelector('.h6__01-banner__modal__video-box__video');
-  bannerSectionVideo.controls = true;
-  bannerNoModalKeyboardFocusableElements = bannerNoModalKeyboardFocusableElements.filter(function(item) {
-    return item !== bannerSectionVideo;
+  const videoSectionBanner = document.querySelector('.h6__01-banner__modal__video-box__video');
+  videoSectionBanner.controls = true;
+  noModalKeyboardFocusableElementsSectionBanner = noModalKeyboardFocusableElementsSectionBanner.filter(function(item) {
+    return item !== videoSectionBanner;
   })
 }
 
-function closeBannerModal() {
-  bannerVideoModal.classList.add('displayNone');
+function closeModalSectionBanner() {
+  videoModalSectionBanner.classList.add('displayNone');
   document.body.classList.remove('overflowHidden');
-  openBannerVideoModalBtns.forEach(el => el.addEventListener('click', openBannerVideoModalAndCreateVideo));
-  bannerNoModalKeyboardFocusableElements.forEach(el => el.setAttribute('tabindex', '0'));
+  openVideoModalBtnsSectionBanner.forEach(el => el.addEventListener('click', openVideoModalAndCreateVideoSectionBanner));
+  noModalKeyboardFocusableElementsSectionBanner.forEach(el => el.setAttribute('tabindex', '0'));
 }
 
-function deleteBannerVideo() {
-  bannerVideoBox.removeChild(bannerVideoBox.firstChild);
+function deleteVideoSectionBanner() {
+  videoBoxSectionBanner.removeChild(videoBoxSectionBanner.firstChild);
 }
 
-function onKeyPressCloseBannerModalAndDeleteVideo(e) {
+function onKeyPressCloseVideoModalAndDeleteVideoSectionBanner(e) {
   if (e.keyCode === 27) {
     event.preventDefault();
-    closeBannerModal();
-    deleteBannerVideo();
-    openBannerVideoModalBtns.forEach(el => el.addEventListener('click', openBannerVideoModalAndCreateVideo));
+    closeModalSectionBanner();
+    deleteVideoSectionBanner();
+    openVideoModalBtnsSectionBanner.forEach(el => el.addEventListener('click', openVideoModalAndCreateVideoSectionBanner));
   }
 }
 
-function bannerModalInsideVideoClick(e) {
+function insideVideoClickBannerSectionModal(e) {
   e.preventDefault();
   e.stopPropagation();
   e.stopImmediatePropagation();
@@ -142,22 +142,30 @@ function bannerModalInsideVideoClick(e) {
 }
 
 keyboardFocusableElements = Array.from(keyboardFocusableElements);
-let bannerNoModalKeyboardFocusableElements = keyboardFocusableElements.slice(0);
-bannerNoModalKeyboardFocusableElements = bannerNoModalKeyboardFocusableElements.filter(function(item) {
-  return item !== closeBannerVideoModalBtn;
+let noModalKeyboardFocusableElementsSectionBanner = keyboardFocusableElements.slice(0);
+noModalKeyboardFocusableElementsSectionBanner = noModalKeyboardFocusableElementsSectionBanner.filter(function(item) {
+  return item !== closeVideoModalBtnSectionBanner;
 })
 /** END OF: Section 1 - Banner Video **/
 
 
 /*** Animate countup - Section 4 - Battery ***/
 window.addEventListener('scroll', startCountupWhenInViewport);
-
+/*
 function startCountupWhenInViewport() {
-  if (isElementInViewport(animatedElement1)) {
+  if (isElementInViewport(animatedNumber1)) {
     animateValue("countUpValue--1", 0, 90, 2000);
     window.removeEventListener('scroll', startCountupWhenInViewport);
   }
-  if (isElementInViewport(animatedElement2)) {  
+  if (isElementInViewport(animatedNumber2)) {  
+    animateValue("countUpValue--2", 0, 10, 1500);
+    window.removeEventListener('scroll', startCountupWhenInViewport);
+  }
+}
+*/
+function startCountupWhenInViewport() {
+  if (isElementInViewport(animatedNumber1) || isElementInViewport(animatedNumber2)) {
+    animateValue("countUpValue--1", 0, 90, 2000);
     animateValue("countUpValue--2", 0, 10, 1500);
     window.removeEventListener('scroll', startCountupWhenInViewport);
   }
