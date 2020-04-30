@@ -178,10 +178,6 @@
     &:hover + .red-dot__tooltip {
       opacity: 1;
     }
-
-    &:focus {
-      transform: scale(1.2);
-    }
   }
 
   &__tooltip {
@@ -268,5 +264,9 @@
 @media (hover: none) {
   .opacity1 {
     opacity: 1;
+  }
+
+  .scaleUp-dot {
+    transform: scale(1.2);
   }
 }
