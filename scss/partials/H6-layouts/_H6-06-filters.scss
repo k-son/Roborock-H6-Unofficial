@@ -559,23 +559,23 @@
 
       &:hover,
       &:focus {
-        border-color: #333;
+        border-color: var(--color-roborock);
       }
 
       &:active {
-        border-color: var(--color-roborock);
+        border-color: var(--color-black);
       }
 
       &:hover::before,
       &:hover::after,
       &:focus::before,
       &:focus::after {
-        background-color: #333;
+        background-color: var(--color-roborock);
       }
 
       &:active::before,
       &:active::after {
-        background-color: var(--color-roborock);
+        background-color: var(--color-black);
       }
     }
   }
