@@ -264,36 +264,6 @@
           border-color: var(--color-roborock);
         }
 
-        /* IF WANTED DIFFERENT DESIGN
-        @media only screen and (max-width: 600px) {
-          border: 1px solid var(--color-txt-white);
-          border-radius: 20px;
-
-          &:hover,
-          &:focus {
-            border: none;
-            padding-bottom: .5rem;
-          }
-        }
-        */
-        /*
-        &:hover > &__digit {
-          background-color: var(--color-roborock);
-          border-color: var(--color-roborock);
-        */
-          /* IF WANTED DIFFERENT DESIGN
-          @media only screen and (max-width: 600px) {
-            display: none;
-          }
-        }
-        */
-        /*
-        &:hover > &__text p {
-          display: inline;
-        }
-        */
-      
-
         &__digit {
           display: flex;
           justify-content: center;
@@ -328,7 +298,8 @@
         }
 
         &__text {
-          display: inline-block;
+          display: flex;
+          flex-direction: column;
           width: 24rem;
           flex-shrink: 1;
 
@@ -340,7 +311,7 @@
             width: 13rem;
           }
 
-          & h6 {
+          & span:first-of-type {
             font-size: 1.6rem;
             line-height: 4rem;
 
@@ -354,7 +325,7 @@
             }
           }
 
-          & p {
+          & span:nth-of-type(2) {
             font-size: 1.4rem;
             font-weight: 300;
             display: none;
