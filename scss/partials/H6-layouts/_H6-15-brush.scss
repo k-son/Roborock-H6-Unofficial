@@ -27,9 +27,11 @@
     transition: all .3s;
     background-size: cover;
     padding: 1.6rem;
+    transition: all .5s;
 
     @media only screen and (max-width: 720px) { 
       height: 20vw;
+      transition: all .3s;
     }
 
     &:not(:last-of-type) {
