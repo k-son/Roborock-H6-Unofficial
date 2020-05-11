@@ -1,5 +1,5 @@
 {
-  "name": "gulp-set",
+  "name": "roborock-h6_unofficial",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -22,5 +22,14 @@
     "gulp-sass": "^4.0.2",
     "gulp-uglify": "^3.0.2",
     "pump": "^3.0.0"
-  }
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/k-son/Roborock-H6-Unofficial.git"
+  },
+  "bugs": {
+    "url": "https://github.com/k-son/Roborock-H6-Unofficial/issues"
+  },
+  "homepage": "https://github.com/k-son/Roborock-H6-Unofficial#readme"
 }
